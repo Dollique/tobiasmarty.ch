@@ -11,8 +11,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Mirai-No-Niji',
-    htmlAttrs: {
+    title: 'tobiasmarty.ch
       lang: 'en',
     },
     meta: [
@@ -51,7 +50,7 @@ export default {
     'nuxt-gsap-module'
   ],
 
-  gsap: {}, 
+  gsap: {},
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
