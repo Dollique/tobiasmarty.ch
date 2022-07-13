@@ -1,0 +1,46 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+@mixin addGutter {
+  margin: 0 $gutter;
+  width: calc(100% - $gutter * 2);
+}
+
+// https://blog.logrocket.com/the-elements-of-responsive-typography/
+@mixin fontSize($rate, $vw, $max:0) {
+  font-size: calc($rate + $vw);
+  line-height: 1.2;
+
+  @include for-big-desktop-up {
+    @if $max != 0 {
+      font-size: $max;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+html,
+body,
+#__nuxt,
+#__layout,
+#__layout > section {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: $color-primary;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+* {
+  color: $color-white;
+  font-family: 'Special Elite', cursive, Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 100%; // set base-size
+
+  &.navOpen {
+    overflow-y: hidden;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+/* CONTENT */
+
+p {
+  @include fontSize(0.65rem, 2vw, 2.2rem);
+}
+
