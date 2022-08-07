@@ -17,6 +17,40 @@ $ yarn start
 $ yarn generate
 ```
 
+## run Storyblok preview on https (locally)
+
+```bash
+// Install mkcert for creating a valid certificate:
+
+      // Mac OS
+      $ brew install mkcert
+
+      // Windows
+      $ choco install mkcert
+
+      $ mkcert -install
+      $ mkcert localhost
+
+// Then install and run the proxy
+
+      $ npm install -g local-ssl-proxy
+      $ local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem
+
+// https is now running on port 3010 and forwarding requests to http 3000
+
+```
+
+## development
+
+```bash
+
+// to develop always have two tabs open running these
+
+$ yarn dev
+$ local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem
+
+```
+
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
 ## Special Directories

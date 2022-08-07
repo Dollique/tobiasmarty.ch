@@ -7,10 +7,17 @@
  * COLORS *
 */
 
+$color-white: #FFFFFF;
+
 $color-primary: #FAFAFA;
-$color-hover: #FFFFFF;
+
 
 $color-content: #000000;
 $color-gray: #5a5a5a;
 
 $color-borders: #ACACAC;
+
+
+$color-hover: $color-white;
+$color-swiper: $color-white;
+$color-swiper-border: $color-gray;

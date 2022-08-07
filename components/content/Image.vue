@@ -1,5 +1,5 @@
 <template>
-  <picture :class="`align-${blok.align}`">
+  <picture v-editable="blok" :class="`align-${blok.align}`">
     <source
       v-if="blok.mobile && blok.mobile.id"
       media="(max-width: 799px)"

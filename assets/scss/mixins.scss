@@ -33,6 +33,27 @@
   width: calc(100% - $gutter * 2);
 }
 
+@mixin addHR($position:'') {
+  $border_style: 2px solid;
+  border-image: url("~/assets/img/line.jpg") 2;
+
+  @if($position == '') {
+    border: $border_style;
+  }
+  @else if($position == 'top') {
+    border-top: $border_style;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  @else if($position == 'bottom') {
+    border-bottom: $border_style;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+}
+
 // https://blog.logrocket.com/the-elements-of-responsive-typography/
 @mixin fontSize($rate, $vw, $max:0) {
   font-size: calc($rate + $vw);
@@ -42,5 +63,15 @@
     @if $max != 0 {
       font-size: $max;
     }
+  }
+}
+
+// add fallback fonts
+@mixin fontFamily($font, $fallback:'') {
+  @if $fallback == '' {
+    font-family: $font, Arial, Helvetica, sans-serif;
+  }
+  @else {
+    font-family: $font, $fallback;
   }
 }

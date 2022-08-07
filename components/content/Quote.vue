@@ -1,5 +1,9 @@
 <template>
-  <div :class="`align-${blok.image[0].align}`" class="quote-wrapper">
+  <div
+    v-editable="blok"
+    :class="`align-${blok.image[0].align} color-${blok.font_color}`"
+    class="quote-wrapper"
+  >
     <blockquote>
       <span class="quote">{{ blok.quote }}</span>
       <span class="author">{{ blok.author }}</span>
@@ -25,6 +29,11 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
+
+  &.color-white,
+  &.color-white * {
+    color: $color-primary;
+  }
 
   &.align {
     &-center {
@@ -64,6 +73,11 @@ export default {
     text-transform: uppercase;
 
     @include fontSize(0.8rem, 2.5vw);
+  }
+
+  .quote,
+  .author {
+    @include fontFamily('Righteous');
   }
 
   .quote {

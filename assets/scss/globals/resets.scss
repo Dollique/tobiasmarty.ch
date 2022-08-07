@@ -12,17 +12,20 @@ body,
   background-color: $color-primary;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
 * {
   color: $color-content;
-  font-family: 'Righteous', Arial, Helvetica, sans-serif;
-  font-weight: lighter;
+  @include fontFamily('Sarabun');
+  font-weight: 400;
 
   box-sizing: border-box;
 
   margin: 0;
   padding: 0;
+
+  &::selection {
+    background-color: $color-content;
+    color: $color-primary;
+  }
 }
 
 html,

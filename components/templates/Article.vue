@@ -1,5 +1,5 @@
 <template>
-  <div class="main-wrapper grid">
+  <div class="main-wrapper">
     <Header :blok="blok" />
 
     <main v-editable="blok">
@@ -65,33 +65,22 @@ main::v-deep {
   }
 
   h1 {
-    padding-bottom: 55px;
+    padding-bottom: 50px;
   }
 
   h2 {
     margin-bottom: 14px;
     padding-left: 9px;
-
-    text-shadow: 22px -9px $color-gray;
-    @include for-tablet-portrait-up {
-      text-shadow: 42px -18px $color-gray;
-    }
   }
 
   p,
   img {
-    padding-bottom: 8vw;
-
-    @include for-tablet-landscape-up {
-      padding-bottom: 2vw;
-    }
+    padding-bottom: 50px;
   }
 
   > *:not(.quote-wrapper) {
     img {
       width: 100%;
-      padding-top: 7vw;
-      padding-bottom: 9vw;
     }
   }
 

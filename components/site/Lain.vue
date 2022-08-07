@@ -23,9 +23,8 @@ hr {
   border: none;
   border-bottom: 1px $color-content solid;
   margin-top: 0px;
-  margin-left: 9px;
-  height: 7px;
-  width: calc(100% - 9px);
+  width: 100%;
+  position: relative;
 
   &.mirror {
     transform: scaleX(-1);
@@ -33,24 +32,16 @@ hr {
     margin-right: 9px;
   }
 
-  &:before,
   &:after {
     content: '';
-
     display: block;
-    height: 0px;
-  }
-  &:before {
-    width: 20px;
-    border-bottom: 1px $color-content solid;
-    margin-left: 8px;
-  }
-  &:after {
-    // width: calc(100vw - 9px - $gutter * 2);
-    width: 20px;
-    border-bottom: 1px $color-content solid;
-    margin-top: 11px;
-    margin-left: -7px;
+    height: 5px;
+    width: 5px;
+    background-color: $color-content;
+    border-radius: 100%;
+    position: absolute;
+    left: 0px;
+    top: -2px;
   }
 }
 </style>
