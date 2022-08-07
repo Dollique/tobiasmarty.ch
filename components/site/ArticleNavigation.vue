@@ -68,7 +68,7 @@ nav {
 
     &:hover {
       svg path {
-        fill: $color-white;
+        fill: $color-content;
       }
     }
 

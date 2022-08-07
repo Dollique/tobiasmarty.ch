@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 hr {
   border: none;
-  border-bottom: 1px $color-white solid;
+  border-bottom: 1px $color-content solid;
   margin-top: 0px;
   margin-left: 9px;
   height: 7px;
@@ -42,13 +42,13 @@ hr {
   }
   &:before {
     width: 20px;
-    border-bottom: 1px $color-white solid;
+    border-bottom: 1px $color-content solid;
     margin-left: 8px;
   }
   &:after {
     // width: calc(100vw - 9px - $gutter * 2);
     width: 20px;
-    border-bottom: 1px $color-white solid;
+    border-bottom: 1px $color-content solid;
     margin-top: 11px;
     margin-left: -7px;
   }

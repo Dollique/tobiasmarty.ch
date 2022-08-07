@@ -2,15 +2,7 @@
   <div
     class="main-wrapper"
     :class="routeClass"
-    :data-bg-image-desktop="blok.bg_image_desktop['filename']"
-    :data-bg-image-mobile="blok.bg_image_mobile['filename']"
   >
-    <style>
-      :root {
-        --bg-image-desktop: url('{{ blok.bg_image_desktop.filename }}');
-        --bg-image-mobile: url('{{ blok.bg_image_mobile.filename }}');
-      }
-    </style>
     <Header :blok="blok" :showNav="false" />
 
     <section v-editable="blok" class="page flex">
@@ -63,8 +55,6 @@ export default {
 
   display: grid;
   grid-template-rows: minmax(100px, auto) 1fr;
-
-  background-size: cover;
 }
 
 // Flexbox

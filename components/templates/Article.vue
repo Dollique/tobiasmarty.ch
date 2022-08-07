@@ -13,7 +13,7 @@
       />
     </main>
 
-    <ArticleNavigation :blok="blok" />
+    <!--ArticleNavigation :blok="blok" /-->
     <Footer />
   </div>
 </template>

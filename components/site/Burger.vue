@@ -49,7 +49,7 @@ $burger-translate__open: 5px;
   width: $burger-width__center;
   //top: 30px;
   transform: translateY(15px);
-  background-color: $color-white;
+  background-color: $color-content;
 }
 
 @mixin icon-before($height, $width, $top) {
@@ -57,7 +57,7 @@ $burger-translate__open: 5px;
   position: absolute;
   width: $width;
   height: $height;
-  background-color: $color-white;
+  background-color: $color-content;
   content: '';
   top: $top;
   //transform: translateY($top);
@@ -68,7 +68,7 @@ $burger-translate__open: 5px;
   position: absolute;
   width: $width;
   height: $height;
-  background-color: $color-white;
+  background-color: $color-content;
   content: '';
   top: $top;
   //transform: translateY($top);

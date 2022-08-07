@@ -16,9 +16,9 @@
           </template>
         </template>
 
-        <aside v-if="showNav" class="grid-2col__right">
+        <!--aside v-if="showNav" class="grid-2col__right">
           <Burger />
-        </aside>
+        </aside-->
 
         <Lain :mirror="true" class="line" />
       </div>

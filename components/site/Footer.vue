@@ -4,8 +4,8 @@
 
     <div class="footer__wrapper">
       <div class="left">
-        <div>@MiischMiisch - 2022</div>
-        <nuxt-link class="" to="/about">About</nuxt-link>
+        <nuxt-link class="" to="/about">About</nuxt-link> |
+        <nuxt-link class="" to="/disclaimer">Disclaimer</nuxt-link>
       </div>
       <div class="right">
         <a href="https://instagram.com/wiinonana" target="_blank">
@@ -58,7 +58,5 @@ footer {
 
 .left {
   margin-right: auto;
-  display: flex;
-  flex-direction: column;
 }
 </style>

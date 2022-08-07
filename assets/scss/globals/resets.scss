@@ -12,11 +12,11 @@ body,
   background-color: $color-primary;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 * {
-  color: $color-white;
-  font-family: 'Special Elite', cursive, Arial, Helvetica, sans-serif;
+  color: $color-content;
+  font-family: 'Righteous', Arial, Helvetica, sans-serif;
   font-weight: lighter;
 
   box-sizing: border-box;

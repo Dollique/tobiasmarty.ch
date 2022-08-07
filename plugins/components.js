@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Page from '~/components/templates/Page.vue'
 
 // content
+import AccordeonItem from '~/components/content/AccordeonItem.vue'
 import Teaser from '~/components/content/Title.vue'
 import Grid from '~/components/content/Grid.vue'
 import SliderText from '~/components/content/SliderText.vue'
@@ -20,6 +21,7 @@ import Feature from '~/components/content/Link.vue'
 Vue.component('page', Page)
 
 // selectable components
+Vue.component('SB_Accordeon_Item', AccordeonItem)
 Vue.component('SB_Title', Teaser)
 Vue.component('SB_Grid', Grid)
 Vue.component('SB_Slidertext', SliderText)

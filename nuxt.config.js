@@ -11,7 +11,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'tobiasmarty.ch
+    title: 'tobiasmarty.ch',
+    htmlAttrs: {
       lang: 'en',
     },
     meta: [
@@ -20,7 +21,13 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
+    script: [
+      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js' },
+      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js' }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

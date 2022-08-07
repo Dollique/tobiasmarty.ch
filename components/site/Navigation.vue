@@ -129,7 +129,7 @@ nav ::v-deep {
 
   a {
     display: block;
-    border-top: 1px $color-white solid;
+    border-top: 1px $color-content solid;
     @include fontSize(1rem, 2.5vw);
 
     text-decoration: none;
@@ -151,7 +151,7 @@ nav ::v-deep {
         border-top: none;
       }
       &:last-child a {
-        border-bottom: 1px $color-white solid;
+        border-bottom: 1px $color-content solid;
       }
     }
 
