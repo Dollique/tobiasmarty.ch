@@ -9,7 +9,7 @@ body,
   margin: 0;
   padding: 0;
 
-  background-color: $color-primary;
+  background-color: $color-background;
 }
 
 * {
@@ -24,7 +24,7 @@ body,
 
   &::selection {
     background-color: $color-content;
-    color: $color-primary;
+    color: $color-content-neg;
   }
 }
 

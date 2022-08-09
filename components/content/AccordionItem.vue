@@ -55,7 +55,7 @@ export default {
 }
 
 h2 {
-  border: 1px black solid;
+  border: 1px solid $color-accordion-border;
   border-right: none;
   border-left: none;
 

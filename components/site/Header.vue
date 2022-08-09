@@ -119,7 +119,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
 
-  background-color: $color-primary;
+  background-color: $color-background;
 
   .wrapper-inner {
     margin: 0 $gutter;

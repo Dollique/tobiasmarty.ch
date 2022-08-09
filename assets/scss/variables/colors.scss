@@ -7,17 +7,22 @@
  * COLORS *
 */
 
-$color-white: #FFFFFF;
+// definitions
 
+$color-white: #FFFFFF;
 $color-primary: #FAFAFA;
 
+$color-black: #000000;
+$color-gray: #ACACAC;
 
-$color-content: #000000;
-$color-gray: #5a5a5a;
+// usage
 
-$color-borders: #ACACAC;
-
+$color-content: $color-black;
+$color-content-neg: $color-primary;
+$color-background: $color-primary;
 
 $color-hover: $color-white;
 $color-swiper: $color-white;
-$color-swiper-border: $color-gray;
+$color-swiper-border: $color-black;
+
+$color-accordion-border: $color-gray;

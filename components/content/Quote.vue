@@ -32,7 +32,7 @@ export default {
 
   &.color-white,
   &.color-white * {
-    color: $color-primary;
+    color: $color-content-neg;
   }
 
   &.align {

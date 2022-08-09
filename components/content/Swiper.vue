@@ -83,7 +83,7 @@ export default {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: $color-primary;
+  color: $color-content-neg;
 
   &:after {
     font-size: 26px;
@@ -100,7 +100,7 @@ export default {
 
   ::v-deep {
     .swiper-pagination-bullet {
-      background: $color-primary;
+      background: $color-background;
       opacity: 0.4;
       width: 100%;
       border-radius: 0;
