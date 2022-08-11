@@ -44,8 +44,25 @@ export default {
       },
 
       //loop: true,
-      slidesPerView: 2,
+      slidesPerView: "auto",
+      centeredSlides: true,
       spaceBetween: 10,
+      slideToClickedSlide:true,
+
+      /*breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },*/
     }
 
     const swiper = new Swiper('.swiper', swiperOptions)
@@ -58,6 +75,7 @@ export default {
   width: 100%;
   //width: 100vw;
   height: 100%;
+  margin-bottom: 50px;
 
   &-image {
     padding: 12px;
@@ -79,6 +97,16 @@ export default {
   background: $color-swiper;
   border: 1px solid $color-swiper-border;
   border-radius: 10px;
+
+  width: 60vw;
+
+  @include for-tablet-portrait-up {
+    width: 40vw;
+  }
+
+  @include for-desktop-up {
+    width: 20vw;
+  }
 }
 
 .swiper-button-next,

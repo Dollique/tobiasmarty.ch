@@ -21,13 +21,12 @@ export default {
 <style lang="scss" scoped>
 .skills {
   flex-direction: column;
-
-  @include for-tablet-portrait-up {
-    flex-direction: row;
-  }
+  padding: $gutter;
 }
 
 h3 {
+  text-align: center;
   font-weight: 700;
+  padding-bottom: 25px;
 }
 </style>

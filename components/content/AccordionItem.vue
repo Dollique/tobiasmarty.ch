@@ -59,7 +59,7 @@ h2 {
   border-right: none;
   border-left: none;
 
-  padding: 10px 0;
+  padding: 10px 25px 10px 0;
 
   display: flex;
   justify-content: space-between;
