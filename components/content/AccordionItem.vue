@@ -59,12 +59,14 @@ h2 {
   border-right: none;
   border-left: none;
 
-  padding: 10px 25px 10px 0;
+  padding: 10px 30px 10px 0;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  cursor: pointer;
 
   &:after {
     content: '';
@@ -89,6 +91,10 @@ h2 {
 
 .accordion-item__content {
   overflow: hidden;
+
+  p {
+    padding-bottom: 20px;
+  }
 }
 
 // show & hide animation

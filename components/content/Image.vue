@@ -82,11 +82,7 @@ picture {
     }
 
     &-full {
-      width: 100vw;
-
-      img {
-        width: 100vw;
-      }
+      max-width: initial;
     }
   }
 }

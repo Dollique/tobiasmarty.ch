@@ -92,7 +92,7 @@ main::v-deep {
 
   > *:last-child,
   > *:last-child img {
-    padding-bottom: 0;
+    //padding-bottom: 0;
     margin-bottom: 0;
   }
 }

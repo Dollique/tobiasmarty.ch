@@ -1,5 +1,6 @@
 <template>
-  <h1 v-editable="blok">{{ myTitle }}</h1>
+  <h1>{{ myTitle }}</h1>
+  <!--div ref="replace"></div-->
 </template>
 
 <script>
@@ -23,7 +24,11 @@ export default {
   },
   data() {
     let getTitle
-    if (this.blok && Object.keys(this.blok).length === 0 && Object.getPrototypeOf(this.blok) === Object.prototype) {
+    if (
+      this.blok &&
+      Object.keys(this.blok).length === 0 &&
+      Object.getPrototypeOf(this.blok) === Object.prototype
+    ) {
       // used in rich-text
       getTitle = this.body.name
     } else {
@@ -32,9 +37,40 @@ export default {
     }
 
     return {
-      myTitle: getTitle
+      myTitle: getTitle,
     }
-  }
+  },
+  computed: {
+    hlevel: {
+      get() {
+        if (this.blok.level) {
+          return this.blok.level
+        }
+        return 1
+      },
+    },
+    /*enderTitle: {
+      get() {
+        const ele = this.$createElement('h' + this.hlevel)
+        ele.text = this.myTitle
+
+        return ele
+      },
+    },*/
+  },
+  render() {
+    /*const ele = this.$createElement('h' + this.hlevel)
+    ele.text = this.myTitle
+
+    return ele*/
+  },
+  mounted() {
+    const ele = this.$createElement('h' + this.hlevel)
+    ele.text = this.myTitle
+    //console.log('ELEE', ele)
+    //console.log('REF', this.$refs.replace)
+    this.$refs.replace = ele
+  },
 }
 </script>
 

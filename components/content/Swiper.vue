@@ -1,12 +1,16 @@
 <template>
-  <section v-editable="blok" class="swiper">
+  <section v-editable="blok" class="swiper" :class="`swiper-type-${blok.type}`">
     <div class="swiper-wrapper">
       <div v-for="blok in blok.item" :key="blok._uid" class="swiper-slide">
         <component :is="blok.component" :blok="blok" />
       </div>
     </div>
 
-    <div class="swiper-pagination" v-if="blok.type == 'image'"></div>
+    <div
+      ref="pagination"
+      class="swiper-pagination"
+      v-if="blok.type == 'img'"
+    ></div>
   </section>
 </template>
 
@@ -37,17 +41,16 @@ export default {
     }
   },
   mounted() {
-    const swiperOptions = {
+    const swiperSkillsOptions = {
       pagination: {
-        el: '.swiper-pagination',
         clickable: true,
       },
 
       //loop: true,
-      slidesPerView: "auto",
+      slidesPerView: 'auto',
       centeredSlides: true,
       spaceBetween: 10,
-      slideToClickedSlide:true,
+      slideToClickedSlide: true,
 
       /*breakpoints: {
           640: {
@@ -65,13 +68,50 @@ export default {
         },*/
     }
 
-    const swiper = new Swiper('.swiper', swiperOptions)
+    const swiperImgOptions = {
+      pagination: {
+        el: this.$refs.pagination,
+        clickable: true,
+      },
+
+      //loop: true,
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 10,
+      autoHeight: true,
+
+      /*breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },*/
+    }
+
+    let swiper
+    if (this.blok.type == 'skillbox') {
+      swiper = new Swiper(this.$el, swiperSkillsOptions)
+    } else if (this.blok.type == 'img') {
+      swiper = new Swiper(this.$el, swiperImgOptions)
+
+      setTimeout(() => {
+        swiper.updateAutoHeight()
+      }, 0) // fix: first slide is not calculated
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.swiper {
+.swiper-type-skillbox {
   width: 100%;
   //width: 100vw;
   height: 100%;
@@ -83,29 +123,30 @@ export default {
   &-box {
     padding: 0 23px;
   }
-}
 
-.swiper-wrapper {
-  /*display: block;
+  .swiper-wrapper {
+    /*display: block;
   overflow: hidden;
   height: auto;*/
-}
-
-.swiper-slide {
-  font-size: 18px;
-
-  background: $color-swiper;
-  border: 1px solid $color-swiper-border;
-  border-radius: 10px;
-
-  width: 60vw;
-
-  @include for-tablet-portrait-up {
-    width: 40vw;
   }
 
-  @include for-desktop-up {
-    width: 20vw;
+  .swiper-slide {
+    font-size: 18px;
+
+    background: $color-swiper;
+    border: 1px solid $color-swiper-border;
+    border-radius: 10px;
+
+    width: 60vw;
+    cursor: pointer;
+
+    @include for-tablet-portrait-up {
+      width: 40vw;
+    }
+
+    @include for-desktop-up {
+      width: 20vw;
+    }
   }
 }
 
@@ -123,19 +164,13 @@ export default {
   background: transparent;
 
   display: flex;
+  justify-content: center;
   padding: 0 10%;
   bottom: 32px;
 
   ::v-deep {
     .swiper-pagination-bullet {
-      background: $color-background;
-      opacity: 0.4;
-      width: 100%;
-      border-radius: 0;
-
-      &-active {
-        opacity: 1;
-      }
+      background: $color-content;
     }
   }
 }

@@ -92,7 +92,7 @@ header {
 }
 
 .grid-2col__left {
-  @include for-tablet-landscape-up {
+  /*@include for-tablet-landscape-up {
     padding-top: 0.8rem;
   }
   @include for-desktop-up {
@@ -100,7 +100,11 @@ header {
   }
   @include for-big-desktop-up {
     padding-top: 2.3rem;
-  }
+  }*/
+}
+
+h1 {
+  display: flex;
 }
 
 a {

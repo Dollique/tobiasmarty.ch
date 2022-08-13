@@ -55,6 +55,8 @@ export default {
     right: 0;
     bottom: 0;
 
+    max-width: initial;
+
     filter: blur(5px);
     -webkit-filter: blur(5px);
 
@@ -71,12 +73,11 @@ export default {
     text-align: center;
     padding: 10vw;
     text-transform: uppercase;
-
-    @include fontSize(0.8rem, 2.5vw);
   }
 
   .quote,
   .author {
+    @include fontSize(0.8rem, 2.5vw);
     @include fontFamily('Righteous');
   }
 

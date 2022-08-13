@@ -14,6 +14,7 @@ body,
 
 * {
   color: $color-content;
+  @include fontSize(0.9rem, 0.5vw, 2.2rem);
   @include fontFamily('Sarabun');
   font-weight: 400;
 
@@ -44,10 +45,3 @@ body {
 .flex {
   display: flex;
 }
-
-/* CONTENT */
-
-p, a {
-  @include fontSize(0.9rem, 0.5vw, 2.2rem);
-}
-
