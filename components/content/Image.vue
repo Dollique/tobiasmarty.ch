@@ -57,16 +57,36 @@ export default {
 picture {
   display: block;
 
+  @include for-tablet-landscape-up {
+    max-width: 50vw;
+  }
+  @include for-desktop-up {
+    max-width: 45vw;
+  }
+  @include for-big-desktop-up {
+    max-width: 40vw;
+  }
+
   &.align {
     &-center {
       padding-left: $gutter;
       padding-right: $gutter;
+
+      margin: 0 auto;
     }
     &-left {
       padding-right: $gutter;
     }
     &-right {
       padding-left: $gutter;
+    }
+
+    &-full {
+      width: 100vw;
+
+      img {
+        width: 100vw;
+      }
     }
   }
 }

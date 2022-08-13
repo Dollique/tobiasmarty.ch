@@ -78,11 +78,11 @@ main::v-deep {
     padding-bottom: 50px;
   }
 
-  > *:not(.quote-wrapper) {
+  /*> *:not(.quote-wrapper) {
     img {
       width: 100%;
     }
-  }
+  }*/
 
   > .quote-wrapper {
     width: 100%;
