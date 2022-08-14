@@ -7,14 +7,14 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
 }
 
 h1 {
-  @include fontSize(1rem, 2.5vw);
+  @include fontSize(2rem, 0.4vw);
 }
 h2 {
-  @include fontSize(0.6rem, 2.5vw);
+  @include fontSize(1.6rem, 0.4vw);
 }
 h3 {
-  @include fontSize(0.6rem, 2.5vw);
+  @include fontSize(1.6rem, 0.4vw);
 }
 h4 {
-  @include fontSize(0.5rem, 2.5vw);
+  @include fontSize(1.5rem, 0.4vw);
 }

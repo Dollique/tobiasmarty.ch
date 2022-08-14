@@ -55,10 +55,13 @@ export default {
 }
 
 h2 {
+  @include addGutter;
+
   border: 1px solid $color-accordion-border;
   border-right: none;
   border-left: none;
 
+  margin-bottom: 14px;
   padding: 10px 30px 10px 0;
 
   display: flex;
@@ -67,6 +70,22 @@ h2 {
   position: relative;
 
   cursor: pointer;
+
+  transition: all 0.25s ease-in-out;
+
+  @include for-tablet-portrait-up {
+    &:hover {
+      background-color: $color-swiper-border;
+      color: $color-background;
+
+      padding-left: 20px;
+
+      &:after {
+        background-image: url('~/assets/img/accordion_button_neg.svg');
+        padding-right: 20px;
+      }
+    }
+  }
 
   &:after {
     content: '';
@@ -79,7 +98,7 @@ h2 {
     width: 25px;
     height: 25px;
 
-    transition: transform 0.25s;
+    transition: all 0.25s;
 
     @include for-tablet-portrait-up {
       background-size: 100% 100%;

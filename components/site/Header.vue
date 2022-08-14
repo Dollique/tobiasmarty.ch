@@ -74,9 +74,9 @@ header {
 }
 
 .wrapper-outer {
-  min-height: 100px;
-
+  //min-height: 100px;
   display: flex;
+  margin-top: 20px;
 }
 
 .wrapper-inner {

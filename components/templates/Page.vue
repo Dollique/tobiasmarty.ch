@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="main-wrapper"
-    :class="routeClass"
-  >
+  <div class="main-wrapper" :class="routeClass">
     <Header :blok="blok" :showNav="false" />
 
     <section v-editable="blok" class="page flex">
@@ -55,6 +52,17 @@ export default {
 
   display: grid;
   grid-template-rows: minmax(100px, auto) 1fr;
+
+  &::v-deep {
+    p {
+      @include addGutter;
+    }
+
+    p,
+    img {
+      padding-bottom: $gap;
+    }
+  }
 }
 
 // Flexbox
@@ -99,12 +107,5 @@ export default {
     padding-bottom: 20px;
     padding-left: $gutter;
   }
-}
-
-// heading
-
-h1 {
-  text-align: center;
-  width: 100%;
 }
 </style>

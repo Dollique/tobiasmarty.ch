@@ -30,6 +30,8 @@ export default {
   width: 100%;
   overflow: hidden;
 
+  margin-bottom: $gap;
+
   &.color-white,
   &.color-white * {
     color: $color-content-neg;
@@ -50,8 +52,8 @@ export default {
 
   picture {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -10px;
+    left: -10px;
     right: 0;
     bottom: 0;
 
@@ -60,7 +62,14 @@ export default {
     filter: blur(5px);
     -webkit-filter: blur(5px);
 
-    z-index: -1;
+    z-index: 1;
+
+    @include for-tablet-landscape-up {
+      top: -200px;
+    }
+    @include for-desktop-up {
+      top: -230px;
+    }
   }
 
   blockquote {
@@ -73,11 +82,14 @@ export default {
     text-align: center;
     padding: 10vw;
     text-transform: uppercase;
+
+    position: relative;
+    z-index: 5;
   }
 
   .quote,
   .author {
-    @include fontSize(0.8rem, 2.5vw);
+    @include fontSize(1.1rem, 1vw);
     @include fontFamily('Righteous');
   }
 

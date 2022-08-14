@@ -4,7 +4,7 @@ body,
 #__layout,
 #__layout > section {
   width: 100%;
-  height: 100%;
+  //height: 100%;
 
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ body,
 
 * {
   color: $color-content;
-  @include fontSize(0.9rem, 0.5vw, 2.2rem);
+  @include fontSize(0.9rem, 0.4vw, 2.2rem);
   @include fontFamily('Sarabun');
   font-weight: 400;
 

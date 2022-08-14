@@ -3,8 +3,6 @@
     <Header :blok="blok" />
 
     <main v-editable="blok">
-      <h1>{{ blok.title }}</h1>
-
       <component
         :is="blok.component"
         v-for="blok in blok.body"
@@ -54,28 +52,13 @@ export default {
 }
 
 main::v-deep {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
   p {
     @include addGutter;
   }
 
-  h1 {
-    padding-bottom: 50px;
-  }
-
-  h2 {
-    margin-bottom: 14px;
-    padding-left: 9px;
-  }
-
   p,
   img {
-    padding-bottom: 50px;
+    padding-bottom: $gap;
   }
 
   /*> *:not(.quote-wrapper) {
@@ -86,8 +69,8 @@ main::v-deep {
 
   > .quote-wrapper {
     width: 100%;
-    margin-top: 7vw;
-    margin-bottom: 9vw;
+    //margin-top: 7vw;
+    //margin-bottom: 9vw;
   }
 
   > *:last-child,

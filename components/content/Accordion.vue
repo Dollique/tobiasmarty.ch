@@ -28,6 +28,6 @@ export default {
 @import 'assets/scss/imports/headers.scss';
 
 .accordion {
-  margin-bottom: 50px;
+  margin-bottom: $gap;
 }
 </style>

@@ -1,5 +1,10 @@
 <template>
-  <section v-editable="blok" class="swiper" :class="`swiper-type-${blok.type}`">
+  <section
+    v-editable="blok"
+    class="swiper"
+    :class="`swiper-type-${blok.type}`"
+    v-if="isSwiperLoaded"
+  >
     <div class="swiper-wrapper">
       <div v-for="blok in blok.item" :key="blok._uid" class="swiper-slide">
         <component :is="blok.component" :blok="blok" />
@@ -15,8 +20,6 @@
 </template>
 
 <script>
-//import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
-
 export default {
   props: {
     blok: {
@@ -24,11 +27,38 @@ export default {
       required: true,
     },
   },
+  data() {
+    return { swiperLoaded: false, swiperInitialized: false }
+  },
+  computed: {
+    isSwiperLoaded: {
+      get() {
+        return this.swiperLoaded
+      },
+      set(value) {
+        this.swiperLoaded = value
+      },
+    },
+    isSwiperInitialized: {
+      get() {
+        return this.swiperInitialized
+      },
+      set(value) {
+        this.swiperInitialized = value
+      },
+    },
+  },
   head() {
     return {
       script: [
         {
+          hid: 'swiper',
           src: 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js',
+          defer: true,
+          // Changed after script load
+          callback: () => {
+            this.isSwiperLoaded = true
+          },
         },
       ],
       link: [
@@ -40,71 +70,87 @@ export default {
       ],
     }
   },
+  methods: {
+    initSwiper() {
+      const swiperSkillsOptions = {
+        pagination: {
+          clickable: true,
+        },
+
+        //loop: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: 10,
+        slideToClickedSlide: true,
+
+        /*breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },*/
+      }
+
+      const swiperImgOptions = {
+        pagination: {
+          el: this.$refs.pagination,
+          clickable: true,
+        },
+
+        //loop: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 10,
+        autoHeight: true,
+
+        /*breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },*/
+      }
+
+      let swiper
+      if (this.blok.type == 'skillbox') {
+        swiper = new Swiper(this.$el, swiperSkillsOptions)
+      } else if (this.blok.type == 'img') {
+        swiper = new Swiper(this.$el, swiperImgOptions)
+
+        setTimeout(() => {
+          swiper.updateAutoHeight()
+        }, 0) // fix: first slide is not calculated
+      }
+    },
+  },
   mounted() {
-    const swiperSkillsOptions = {
-      pagination: {
-        clickable: true,
-      },
-
-      //loop: true,
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      spaceBetween: 10,
-      slideToClickedSlide: true,
-
-      /*breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        },*/
+    if (!this.isSwiperInitialized && this.isSwiperLoaded) {
+      console.log('INIT LOADED')
+      this.initSwiper()
+      this.isSwiperInitialized = true
     }
-
-    const swiperImgOptions = {
-      pagination: {
-        el: this.$refs.pagination,
-        clickable: true,
-      },
-
-      //loop: true,
-      slidesPerView: 1,
-      centeredSlides: true,
-      spaceBetween: 10,
-      autoHeight: true,
-
-      /*breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        },*/
-    }
-
-    let swiper
-    if (this.blok.type == 'skillbox') {
-      swiper = new Swiper(this.$el, swiperSkillsOptions)
-    } else if (this.blok.type == 'img') {
-      swiper = new Swiper(this.$el, swiperImgOptions)
-
-      setTimeout(() => {
-        swiper.updateAutoHeight()
-      }, 0) // fix: first slide is not calculated
+  },
+  updated() {
+    if (!this.isSwiperInitialized && this.isSwiperLoaded) {
+      console.log('UPD LOADED')
+      this.initSwiper()
+      this.isSwiperInitialized = true
     }
   },
 }
@@ -148,6 +194,10 @@ export default {
       width: 20vw;
     }
   }
+}
+
+.swiper-type-img {
+  margin-bottom: 20px;
 }
 
 .swiper-button-next,

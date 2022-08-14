@@ -26,7 +26,7 @@ export default {
     ],
     script: [
       { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js' },
-      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js' }
+      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js' },
     ],
   },
 

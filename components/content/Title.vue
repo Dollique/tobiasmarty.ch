@@ -1,8 +1,3 @@
-<template>
-  <h1>{{ myTitle }}</h1>
-  <!--div ref="replace"></div-->
-</template>
-
 <script>
 export default {
   props: {
@@ -49,32 +44,26 @@ export default {
         return 1
       },
     },
-    /*enderTitle: {
-      get() {
-        const ele = this.$createElement('h' + this.hlevel)
-        ele.text = this.myTitle
-
-        return ele
-      },
-    },*/
   },
   render() {
-    /*const ele = this.$createElement('h' + this.hlevel)
-    ele.text = this.myTitle
-
-    return ele*/
+    return this.$createElement('h' + this.hlevel, this.myTitle)
   },
-  mounted() {
-    const ele = this.$createElement('h' + this.hlevel)
-    ele.text = this.myTitle
-    //console.log('ELEE', ele)
-    //console.log('REF', this.$refs.replace)
-    this.$refs.replace = ele
-  },
+  mounted() {},
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include addGutter;
+}
+
+h1,
+h2 {
+  padding-bottom: $gap;
 }
 </style>
