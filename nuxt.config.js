@@ -83,7 +83,8 @@ export default {
   build: {
       transpile: [
         '@marvr/storyblok-rich-text-vue-renderer'
-    ]
+    ],
+    standalone: true, // fix swiperJS 8 -> https://github.com/seosmmbusiness/NuxtJs-SwiperJs8
   },
 
   pageTransition: {

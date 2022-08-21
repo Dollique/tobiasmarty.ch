@@ -3,7 +3,6 @@
     v-editable="blok"
     class="swiper"
     :class="`swiper-type-${blok.type}`"
-    v-if="isSwiperLoaded"
   >
     <div class="swiper-wrapper">
       <div v-for="blok in blok.item" :key="blok._uid" class="swiper-slide">
@@ -20,7 +19,17 @@
 </template>
 
 <script>
+import Swiper, { Pagination } from 'swiper'
+
+import 'swiper/swiper.min.css'
+import 'swiper/modules/pagination/pagination.min.css'
+//import 'swiper/css/pagination';
+//import 'swiper/css';
+
 export default {
+  components: {
+    Swiper,
+  },
   props: {
     blok: {
       type: Object,
@@ -28,17 +37,9 @@ export default {
     },
   },
   data() {
-    return { swiperLoaded: false, swiperInitialized: false }
+    return { swiperInitialized: false }
   },
   computed: {
-    isSwiperLoaded: {
-      get() {
-        return this.swiperLoaded
-      },
-      set(value) {
-        this.swiperLoaded = value
-      },
-    },
     isSwiperInitialized: {
       get() {
         return this.swiperInitialized
@@ -47,28 +48,6 @@ export default {
         this.swiperInitialized = value
       },
     },
-  },
-  head() {
-    return {
-      script: [
-        {
-          hid: 'swiper',
-          src: 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js',
-          defer: true,
-          // Changed after script load
-          callback: () => {
-            this.isSwiperLoaded = true
-          },
-        },
-      ],
-      link: [
-        {
-          rel: 'stylesheet',
-          type: 'text/css',
-          href: 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css',
-        },
-      ],
-    }
   },
   methods: {
     initSwiper() {
@@ -100,6 +79,7 @@ export default {
       }
 
       const swiperImgOptions = {
+        modules: [Pagination],
         pagination: {
           el: this.$refs.pagination,
           clickable: true,
@@ -127,28 +107,25 @@ export default {
         },*/
       }
 
-      let swiper
       if (this.blok.type == 'skillbox') {
-        swiper = new Swiper(this.$el, swiperSkillsOptions)
+        const swiperSkills = new Swiper(this.$el, swiperSkillsOptions)
       } else if (this.blok.type == 'img') {
-        swiper = new Swiper(this.$el, swiperImgOptions)
+        const swiperIMG = new Swiper(this.$el, swiperImgOptions)
 
         setTimeout(() => {
-          swiper.updateAutoHeight()
+          swiperIMG.updateAutoHeight()
         }, 0) // fix: first slide is not calculated
       }
     },
   },
   mounted() {
-    if (!this.isSwiperInitialized && this.isSwiperLoaded) {
-      console.log('INIT LOADED')
+    if (!this.isSwiperInitialized) {
       this.initSwiper()
       this.isSwiperInitialized = true
     }
   },
   updated() {
-    if (!this.isSwiperInitialized && this.isSwiperLoaded) {
-      console.log('UPD LOADED')
+    if (!this.isSwiperInitialized) {
       this.initSwiper()
       this.isSwiperInitialized = true
     }
