@@ -10,15 +10,19 @@
         :blok="blok"
       />
     </section>
+
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from '~/components/site/Header.vue'
+import Footer from '~/components/site/Footer.vue'
 
 export default {
   components: {
     Header,
+    Footer,
   },
   props: {
     blok: {
@@ -48,10 +52,11 @@ export default {
 @import 'assets/scss/imports/grid.scss';
 
 .main-wrapper {
-  min-height: 100%;
+  min-height: 100vh;
 
   display: grid;
-  grid-template-rows: minmax(100px, auto) 1fr;
+  grid-template-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+  align-items: flex-start;
 
   &::v-deep {
     p {
@@ -60,7 +65,7 @@ export default {
 
     p,
     img {
-      padding-bottom: $gap;
+      //padding-bottom: $gap;
     }
   }
 }

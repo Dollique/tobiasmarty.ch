@@ -111,8 +111,18 @@ h2 {
 .accordion-item__content {
   overflow: hidden;
 
-  p {
-    padding-bottom: 20px;
+  ::v-deep {
+    p {
+      padding-bottom: 3px;
+    }
+
+    ul {
+      li {
+        p {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
 
