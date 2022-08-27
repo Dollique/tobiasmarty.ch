@@ -1,9 +1,5 @@
 <template>
-  <section
-    v-editable="blok"
-    class="swiper"
-    :class="`swiper-type-${blok.type}`"
-  >
+  <section v-editable="blok" class="swiper" :class="`swiper-type-${blok.type}`">
     <div class="swiper-wrapper">
       <div v-for="blok in blok.item" :key="blok._uid" class="swiper-slide">
         <component :is="blok.component" :blok="blok" />
@@ -62,20 +58,23 @@ export default {
         spaceBetween: 10,
         slideToClickedSlide: true,
 
-        /*breakpoints: {
+        breakpoints: {
           640: {
-            slidesPerView: 2,
+            //slidesPerView: 2,
+            //spaceBetween: 20,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
+            //slidesPerView: 4,
+            //spaceBetween: 40,
+            spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
+            //slidesPerView: 5,
+            //spaceBetween: 50,
+            spaceBetween: 40,
           },
-        },*/
+        },
       }
 
       const swiperImgOptions = {
@@ -114,7 +113,7 @@ export default {
 
         setTimeout(() => {
           swiperIMG.updateAutoHeight()
-        }, 0) // fix: first slide is not calculated
+        }, 100) // fix: first slide is not calculated
       }
     },
   },
@@ -139,6 +138,7 @@ export default {
   //width: 100vw;
   height: 100%;
   margin-bottom: 50px;
+  padding-bottom: 1px; // fix firefox issue with border-bottom
 
   &-image {
     padding: 12px;
