@@ -56,11 +56,6 @@ main::v-deep {
     @include addGutter;
   }
 
-  p,
-  img {
-    padding-bottom: $gap;
-  }
-
   /*> *:not(.quote-wrapper) {
     img {
       width: 100%;
@@ -71,12 +66,6 @@ main::v-deep {
     width: 100%;
     //margin-top: 7vw;
     //margin-bottom: 9vw;
-  }
-
-  > *:last-child,
-  > *:last-child img {
-    //padding-bottom: 0;
-    margin-bottom: 0;
   }
 }
 </style>

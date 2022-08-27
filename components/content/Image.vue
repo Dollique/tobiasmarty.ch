@@ -89,5 +89,7 @@ picture {
 
 img {
   width: 100%;
+
+  margin-bottom: $gap;
 }
 </style>

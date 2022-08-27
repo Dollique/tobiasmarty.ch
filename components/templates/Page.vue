@@ -55,17 +55,15 @@ export default {
   min-height: 100vh;
 
   display: grid;
-  grid-template-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+  grid-template-rows: minmax(min-content, max-content) auto minmax(
+      min-content,
+      max-content
+    );
   align-items: flex-start;
 
   &::v-deep {
     p {
       @include addGutter;
-    }
-
-    p,
-    img {
-      //padding-bottom: $gap;
     }
   }
 }
