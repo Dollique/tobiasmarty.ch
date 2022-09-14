@@ -88,7 +88,7 @@ export default {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 10,
-        autoHeight: true,
+        //autoHeight: true,
 
         /*breakpoints: {
           640: {
@@ -110,10 +110,6 @@ export default {
         const swiperSkills = new Swiper(this.$el, swiperSkillsOptions)
       } else if (this.blok.type == 'img') {
         const swiperIMG = new Swiper(this.$el, swiperImgOptions)
-
-        setTimeout(() => {
-          swiperIMG.updateAutoHeight()
-        }, 100) // fix: first slide is not calculated
       }
     },
   },
@@ -176,6 +172,26 @@ export default {
 .swiper-type-img {
   margin-bottom: 20px;
   padding-bottom: 10px;
+
+  .swiper-slide {
+    ::v-deep {
+      picture {
+        max-width: inherit;
+        max-height: 385px;
+        display: flex;
+        flex-direction: column;
+
+        @include for-tablet-portrait-up {
+          max-height: 850px;
+        }
+
+        img {
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
 }
 
 .swiper-button-next,
