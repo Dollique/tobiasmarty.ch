@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Swiper, { Pagination } from 'swiper'
+import Swiper, { Pagination, Autoplay } from 'swiper'
 
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
@@ -78,7 +78,7 @@ export default {
       }
 
       const swiperImgOptions = {
-        modules: [Pagination],
+        modules: [Pagination, Autoplay],
         pagination: {
           el: this.$refs.pagination,
           clickable: true,
@@ -88,7 +88,12 @@ export default {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 10,
-        //autoHeight: true,
+        autoHeight: true,
+
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
 
         /*breakpoints: {
           640: {
@@ -169,6 +174,7 @@ export default {
   }
 }
 
+/* SWIPER - IMAGE */
 .swiper-type-img {
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -177,17 +183,19 @@ export default {
     ::v-deep {
       picture {
         max-width: inherit;
-        max-height: 385px;
-        display: flex;
-        flex-direction: column;
+        //max-height: 385px;
+        //display: flex;
+        //flex-direction: column;
 
         @include for-tablet-portrait-up {
-          max-height: 850px;
+          //max-height: 850px;
+          margin: 0 25vw;
         }
 
         img {
-          height: 100%;
+          //height: 100%;
           object-fit: contain;
+          max-height: 80vh;
         }
       }
     }

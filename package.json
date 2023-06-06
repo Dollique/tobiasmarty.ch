@@ -24,7 +24,7 @@
     "sass": "^1.49.9",
     "sass-loader": "^10.2.1",
     "storyblok-nuxt": "^2.0.1",
-    "swiper": "^8.3.2",
+    "swiper": "^9.3.2yarn upgrade",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",

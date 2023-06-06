@@ -18,11 +18,12 @@
               ${resize(blok.src.filename, '1200x0')} 1200w
               `"
     />
+    <!-- Fallback to mobile -->
     <img
-      :src="blok.src.filename"
-      :srcset="`${resize(blok.src.filename, '480x0')} 480w,
-              ${resize(blok.src.filename, '800x0')} 800w,
-              ${resize(blok.src.filename, '1200x0')} 1200w
+      :src="blok.mobile.filename"
+      :srcset="`${resize(blok.mobile.filename, '480x0')} 480w,
+              ${resize(blok.mobile.filename, '800x0')} 800w,
+              ${resize(blok.mobile.filename, '1200x0')} 1200w
               `"
     />
   </picture>
