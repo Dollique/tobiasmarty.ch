@@ -93,4 +93,19 @@ img {
 
   margin-bottom: $gap;
 }
+
+@media print {
+  picture {
+    &.align {
+      &-center {
+        text-align: center;
+
+        img {
+          max-height: 50vh;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
 </style>

@@ -147,4 +147,19 @@ h2 {
     }
   }
 }
+
+@media print {
+  .accordion-item {
+    h2 {
+      &:after {
+        display: none;
+      }
+    }
+  }
+  .accordion-item__content {
+    height: 100% !important;
+    opacity: 1 !important;
+    margin-bottom: 20px;
+  }
+}
 </style>

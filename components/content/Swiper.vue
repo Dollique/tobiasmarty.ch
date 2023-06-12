@@ -174,6 +174,17 @@ export default {
   }
 }
 
+@media print {
+  .swiper-type-skillbox {
+    .swiper-wrapper {
+      flex-direction: column;
+    }
+    .swiper-slide {
+      margin-bottom: 20px;
+    }
+  }
+}
+
 /* SWIPER - IMAGE */
 .swiper-type-img {
   margin-bottom: 20px;
