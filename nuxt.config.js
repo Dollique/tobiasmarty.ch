@@ -23,6 +23,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'apple-touch-icon', href: '/favicon_apple_touch.png' },
+      { rel: 'manifest', href: '/manifest.webmanifest' },
     ],
     script: [
       { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js' },
