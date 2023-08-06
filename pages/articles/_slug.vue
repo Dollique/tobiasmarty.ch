@@ -86,7 +86,7 @@ export default {
 
       // Use the input event for instant update of content
       storyblokInstance.on('input', (event) => {
-        console.log(this.story.content)
+        //console.log(this.story.content)
         if (event.story.id === this.story.id) {
           this.story.content = event.story.content
         }

@@ -9,7 +9,12 @@
         :key="blok._uid"
         :blok="blok"
         class="waypoint"
-        v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }" />
+        v-waypoint="{
+          active: true,
+          callback: onWaypoint,
+          options: intersectionOptions,
+        }"
+      />
     </main>
 
     <!--ArticleNavigation :blok="blok" /-->
@@ -38,33 +43,28 @@ export default {
     intersectionOptions: {
       root: null,
       rootMargin: '0px 0px -100px 0px',
-      threshold: [0.25, 0.75] // [0.25, 0.75] if you want a 25% offset!
-    } // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+      threshold: [0.25, 0.75], // [0.25, 0.75] if you want a 25% offset!
+    }, // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
   }),
   methods: {
-    onWaypoint ({ going, direction, el }) {
-      console.log('going', going);
-      console.log('direction', direction);
-      console.log('EL', el);
-
+    onWaypoint({ going, direction, el }) {
       // scrolling up
       if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
         if (going === this.$waypointMap.GOING_OUT) {
-          console.log('OUT', el);
-          el.classList.remove('waypoint-active');
+          el.classList.remove('waypoint-active')
         } else {
-          el.classList.add('waypoint-active');
+          el.classList.add('waypoint-active')
         }
       }
 
       // scrolling down
       if (going === this.$waypointMap.GOING_IN) {
         if (direction !== this.$waypointMap.DIRECTION_BOTTOM) {
-          el.classList.add('waypoint-active');
+          el.classList.add('waypoint-active')
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
