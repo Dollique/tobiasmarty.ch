@@ -16,6 +16,7 @@ import RichText from '~/components/content/RichText.vue'
 import Image from '~/components/content/Image.vue'
 import Quote from '~/components/content/Quote.vue'
 import Buttn from '~/components/content/Buttn.vue'
+import Portfolio from '~/components/content/Portfolio.vue'
 
 // form
 import FormSection from '~/components/form/FormSection.vue'
@@ -39,5 +40,6 @@ Vue.component('SB_Richtext', RichText)
 Vue.component('SB_Image', Image)
 Vue.component('SB_Quote', Quote)
 Vue.component('SB_Buttn', Buttn)
+Vue.component('SB_Portfolio', Portfolio)
 Vue.component('SB_Form-input', FormInput)
 Vue.component('SB_Form-section', FormSection)
