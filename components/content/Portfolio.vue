@@ -47,15 +47,11 @@ export default {
 .portfolio-wrapper {
   position: relative;
   width: 100%;
+  height: auto;
   overflow: hidden;
 
   box-shadow: 6px 8px 10px 3px rgba(0, 0, 0, 0.25);
   border: 1px $color-black solid;
-
-  margin-bottom: $gap;
-
-  @include for-tablet-portrait-up {
-  }
 
   &.active,
   &:hover {
@@ -73,70 +69,73 @@ export default {
   picture {
     transition: filter 0.25s ease-in-out;
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    max-width: initial;
+    width: 100%;
+    height: 100%;
 
     z-index: 1;
   }
 
-  .portfolio__content {
-    transition: opacity 0.25s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
-
-    background-color: rgba($color-black, 0.5);
-
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    padding: 5vw;
-    gap: 40px;
-
-    position: relative;
-    z-index: 5;
-
-    h1,
-    h2,
-    h3 {
-      color: $color-white;
-      padding-bottom: 0;
-      text-align: center;
-    }
-
-    h3 {
-      &:before,
-      &:after {
-        content: '';
-        height: 2px;
-        width: 44px;
-        background-color: $color-white;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-      }
-      &:before {
-        margin-left: -38px;
-      }
-      &:after {
-        margin-left: -6px;
-      }
+  ::v-deep {
+    picture {
+      margin-bottom: 0;
     }
   }
+}
 
-  .portfolio__content_item {
-    position: relative; // because of h3 before/after
-    width: 100%;
+.portfolio__content {
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+
+  background-color: rgba($color-black, 0.5);
+
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  min-height: 30vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 5vw;
+  gap: 40px;
+
+  h1,
+  h2,
+  h3 {
+    color: $color-white;
+    padding-bottom: 0;
     text-align: center;
   }
+
+  h3 {
+    &:before,
+    &:after {
+      content: '';
+      height: 2px;
+      width: 44px;
+      background-color: $color-white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    &:before {
+      margin-left: -38px;
+    }
+    &:after {
+      margin-left: -6px;
+    }
+  }
+}
+
+.portfolio__content_item {
+  position: relative; // because of h3 before/after
+  width: 100%;
+  text-align: center;
 }
 </style>

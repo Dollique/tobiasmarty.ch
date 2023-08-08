@@ -41,9 +41,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-a {
-}
-
 // needed for Portfolio component (icon list)
 ::v-deep {
   .link__block {

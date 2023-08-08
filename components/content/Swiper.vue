@@ -200,7 +200,8 @@ export default {
 
         @include for-tablet-portrait-up {
           //max-height: 850px;
-          margin: 0 25vw;
+          margin-left: 25vw;
+          margin-right: 25vw;
         }
 
         img {
@@ -229,7 +230,7 @@ export default {
   display: flex;
   justify-content: center;
   padding: 0 10%;
-  bottom: 32px;
+  bottom: 27px;
 
   ::v-deep {
     .swiper-pagination-bullet {

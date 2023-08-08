@@ -57,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 picture {
   display: block;
+  margin-bottom: $gap;
 
   @include for-tablet-landscape-up {
     max-width: 50vw;
@@ -73,7 +74,8 @@ picture {
       padding-left: $gutter;
       padding-right: $gutter;
 
-      margin: 0 auto;
+      margin-right: auto;
+      margin-left: auto;
     }
     &-left {
       padding-right: $gutter;
@@ -88,10 +90,15 @@ picture {
   }
 }
 
+picture,
+picture source,
+picture img {
+  font-size: 0;
+  line-height: 0;
+}
+
 img {
   width: 100%;
-
-  margin-bottom: $gap;
 }
 
 @media print {

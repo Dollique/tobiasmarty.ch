@@ -17,12 +17,17 @@ export default {
   methods: {
     getClasses() {
       const force_row = this.blok.force_row ? 'force_row' : ''
+      const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
+      const add_margin_bottom = this.blok.add_margin_bottom
+        ? ' add_margin_bottom'
+        : ''
+      const gap = this.blok.gap !== '' ? ' ' + this.blok.gap : ''
 
       const justify = this.blok.justify_content
         ? ' justify_' + this.blok.justify_content
         : ''
 
-      return force_row + justify
+      return force_row + add_gutter + add_margin_bottom + gap + justify
     },
   },
 }
@@ -31,6 +36,11 @@ export default {
 <style lang="scss" scoped>
 .grid-wrapper {
   flex-direction: column;
+
+  &.add_gutter {
+    @include addGutter;
+  }
+
   &.force_row {
     flex-direction: row;
   }
@@ -55,20 +65,8 @@ export default {
     }
   }
 
-  @include addGutter;
-
   @include for-tablet-portrait-up {
     flex-direction: row;
-    gap: $gap;
-
-    div {
-      flex: 1;
-    }
-
-    ::v-deep > *:not(.quote-wrapper) img {
-      padding-top: 0;
-      margin-top: 0;
-    }
   }
 }
 </style>
