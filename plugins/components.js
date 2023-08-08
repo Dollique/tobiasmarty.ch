@@ -17,11 +17,12 @@ import Image from '~/components/content/Image.vue'
 import Quote from '~/components/content/Quote.vue'
 import Buttn from '~/components/content/Buttn.vue'
 import Portfolio from '~/components/content/Portfolio.vue'
+import Link from '~/components/content/Link.vue'
+import Icon from '~/components/content/Icon.vue'
 
 // form
 import FormSection from '~/components/form/FormSection.vue'
 import FormInput from '~/components/form/FormInput.vue'
-import Feature from '~/components/content/Link.vue'
 
 // content-types
 Vue.component('page', Page)
@@ -35,11 +36,12 @@ Vue.component('SB_Accordion_Item', AccordionItem)
 Vue.component('SB_Title', Teaser)
 Vue.component('SB_Grid', Grid)
 Vue.component('SB_Slidertext', SliderText)
-Vue.component('SB_Link', Feature)
+Vue.component('SB_Link', Link)
 Vue.component('SB_Richtext', RichText)
 Vue.component('SB_Image', Image)
 Vue.component('SB_Quote', Quote)
 Vue.component('SB_Buttn', Buttn)
 Vue.component('SB_Portfolio', Portfolio)
+Vue.component('SB_Icon', Icon)
 Vue.component('SB_Form-input', FormInput)
 Vue.component('SB_Form-section', FormSection)

@@ -1,5 +1,5 @@
   <template>
-  <div v-editable="blok" class="grid-wrapper flex">
+  <div v-editable="blok" class="grid-wrapper flex" :class="getClasses()">
     <div v-for="blok in blok.columns" :key="blok._uid" class="">
       <component :is="blok.component" :blok="blok" />
     </div>
@@ -14,12 +14,47 @@ export default {
       required: true,
     },
   },
+  methods: {
+    getClasses() {
+      const force_row = this.blok.force_row ? 'force_row' : ''
+
+      const justify = this.blok.justify_content
+        ? ' justify_' + this.blok.justify_content
+        : ''
+
+      return force_row + justify
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .grid-wrapper {
   flex-direction: column;
+  &.force_row {
+    flex-direction: row;
+  }
+  &.justify_ {
+    &flex-start {
+      justify-content: flex-start;
+    }
+    &center {
+      justify-content: center;
+    }
+    &space-around {
+      justify-content: space-around;
+    }
+    &space-between {
+      justify-content: space-between;
+    }
+    &space-evenly {
+      justify-content: space-evenly;
+    }
+    &flex-end {
+      justify-content: flex-end;
+    }
+  }
+
   @include addGutter;
 
   @include for-tablet-portrait-up {

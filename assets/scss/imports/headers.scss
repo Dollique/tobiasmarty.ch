@@ -1,5 +1,15 @@
-h1, h2, h3, h4, h5, h6,
-h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
   text-align: left;
   text-transform: uppercase;
 
@@ -9,12 +19,15 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
 h1 {
   @include fontSize(2rem, 0.4vw);
 }
+
 h2 {
   @include fontSize(1.6rem, 0.4vw);
 }
+
 h3 {
-  @include fontSize(1.6rem, 0.4vw);
+  @include fontSize(1.4rem, 0.4vw);
 }
+
 h4 {
-  @include fontSize(1.5rem, 0.4vw);
+  @include fontSize(1.2rem, 0.4vw);
 }
