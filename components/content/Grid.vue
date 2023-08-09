@@ -1,6 +1,6 @@
   <template>
   <div v-editable="blok" class="grid-wrapper flex" :class="getClasses()">
-    <div v-for="blok in blok.columns" :key="blok._uid" class="">
+    <div v-for="blok in blok.columns" :key="blok._uid">
       <component :is="blok.component" :blok="blok" />
     </div>
   </div>
@@ -37,12 +37,29 @@ export default {
 .grid-wrapper {
   flex-direction: column;
 
-  &.add_gutter {
-    @include addGutter;
+  flex-wrap: wrap;
+  &.gap-1 > div {
+    flex-basis: calc(50% - 0.5rem);
+  }
+  &.gap-2 > div {
+    flex-basis: calc(50% - 1rem);
+  }
+  &.gap-3 > div {
+    flex-basis: calc(50% - 1.5rem);
+  }
+  &.gap-4 > div {
+    flex-basis: calc(50% - 2rem);
+  }
+  &.gap-5 > div {
+    flex-basis: calc(50% - 2.5rem);
   }
 
   &.force_row {
     flex-direction: row;
+    flex-wrap: wrap;
+    > div {
+      flex-basis: initial;
+    }
   }
   &.justify_ {
     &flex-start {

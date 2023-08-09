@@ -11,7 +11,11 @@
     </nuxt-link>
 
     <!-- external link -->
-    <a :href="blok.href['cached_url']" v-if="blok.href['linktype'] === 'url'">
+    <a
+      :href="blok.href['cached_url']"
+      v-if="blok.href['linktype'] === 'url'"
+      target="_blank"
+    >
       <span
         v-if="!Array.isArray(blok.blocklink) || blok.blocklink.length === 0"
         >{{ blok.title }}</span

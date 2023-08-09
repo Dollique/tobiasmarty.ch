@@ -1,5 +1,5 @@
 <template>
-  <h2 class="buttons" v-editable="blok">
+  <h2 class="button" v-editable="blok" :class="getClasses()">
     <a v-if="blok.href.filename != ''" class="btn" :href="blok.href.filename">{{
       blok.name
     }}</a>
@@ -17,17 +17,25 @@ export default {
       required: true,
     },
   },
+  methods: {
+    getClasses() {
+      const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
+      const add_margin_bottom = this.blok.add_margin_bottom
+        ? ' add_margin_bottom'
+        : ''
+
+      return add_gutter + add_margin_bottom
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import 'assets/scss/imports/headers.scss';
 
-.buttons {
+.button {
   display: flex;
   justify-content: center;
-
-  margin-bottom: $gap;
 }
 
 .btn {
@@ -35,13 +43,15 @@ export default {
   border: 1px solid $color-swiper-border;
 
   border-radius: 10px;
-  padding: 30px 90px;
+  padding: 20px 40px;
 
   text-decoration: none;
 
   transition: all 0.25s ease-in-out;
 
   @include for-tablet-portrait-up {
+    padding: 30px 90px;
+
     &:hover {
       background-color: $color-swiper-border;
       color: $color-background;

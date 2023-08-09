@@ -69,6 +69,7 @@ export default {
   picture {
     transition: filter 0.25s ease-in-out;
 
+    max-width: 100%;
     width: 100%;
     height: 100%;
 
@@ -110,6 +111,22 @@ export default {
     color: $color-white;
     padding-bottom: 0;
     text-align: center;
+  }
+
+  @include for-tablet-portrait-up {
+    gap: 20px;
+    padding: 2vw;
+    min-height: initial;
+    h3 {
+      @include fontSize(1.2rem, 0.4vw);
+    }
+  }
+  @include for-desktop-up {
+    gap: 40px; // reset
+    padding: 5vw; // reset
+    h3 {
+      @include fontSize(1.4rem, 0.4vw); // reset
+    }
   }
 
   h3 {

@@ -15,5 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 .icon {
+  font-size: 0;
 }
 </style>
