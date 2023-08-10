@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <Header :blok="blok" />
 
-    <main v-editable="blok" v-if="intersectionOptions">
+    <main v-editable="blok">
       <component
         :is="blok.component"
         v-for="blok in blok.body"
@@ -40,17 +40,12 @@ export default {
     },
   },
   data: () => ({
-    intersectionOptions: null, // Initially we set thresholds as null
+    intersectionOptions: {
+      root: null,
+      rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
+      threshold: [0, 0.75], // script is executed at 0% and 75% visibility
+    },
   }),
-  mounted() {
-    window.addEventListener('load', () => {
-      this.intersectionOptions = {
-        root: null,
-        rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
-        threshold: [0, 0.75], // script is executed at 0% and 75% visibility
-      } // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-    })
-  },
   methods: {
     onWaypoint({ going, direction, el }) {
       if (
