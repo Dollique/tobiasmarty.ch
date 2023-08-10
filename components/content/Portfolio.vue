@@ -53,8 +53,8 @@ export default {
   box-shadow: 6px 8px 10px 3px rgba(0, 0, 0, 0.25);
   border: 1px $color-black solid;
 
-  &.active,
-  &:hover {
+  // is a mixin because @extend does not work on media queries
+  @mixin porftolio-hover {
     .portfolio__content {
       opacity: 1;
       pointer-events: initial;
@@ -64,6 +64,16 @@ export default {
       filter: blur(5px);
       -webkit-filter: blur(5px);
     }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      @include porftolio-hover;
+    }
+  }
+
+  &.active {
+    @include porftolio-hover;
   }
 
   picture {
