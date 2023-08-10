@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <Header :blok="blok" />
 
-    <main v-editable="blok">
+    <main v-editable="blok" v-if="intersectionOptions">
       <component
         :is="blok.component"
         v-for="blok in blok.body"
@@ -40,27 +40,51 @@ export default {
     },
   },
   data: () => ({
-    intersectionOptions: {
-      root: null,
-      rootMargin: '0px 0px -100px 0px',
-      threshold: [0.25, 0.75], // [0.25, 0.75] if you want a 25% offset!
-    }, // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    intersectionOptions: null, // Initially we set thresholds as null
   }),
+  mounted() {
+    window.addEventListener('load', () => {
+      this.intersectionOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
+        threshold: [0, 0.75], // script is executed at 0% and 75% visibility
+      } // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    })
+  },
   methods: {
     onWaypoint({ going, direction, el }) {
-      // scrolling up
-      if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
-        if (going === this.$waypointMap.GOING_OUT) {
-          el.classList.remove('waypoint-active')
-        } else {
-          el.classList.add('waypoint-active')
-        }
+      if (
+        // ignore horizontal changes (including fade-in animation)
+        direction == this.$waypointMap.DIRECTION_LEFT ||
+        direction == this.$waypointMap.DIRECTION_RIGHT
+      ) {
+        return
       }
 
-      // scrolling down
-      if (going === this.$waypointMap.GOING_IN) {
-        if (direction !== this.$waypointMap.DIRECTION_BOTTOM) {
-          el.classList.add('waypoint-active')
+      if (
+        // initial load
+        typeof direction === 'undefined' &&
+        going === this.$waypointMap.GOING_IN
+      ) {
+        el.classList.add('waypoint-active')
+        return
+      } else {
+        // behavior when scrolling
+
+        // scrolling up
+        if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
+          if (going === this.$waypointMap.GOING_OUT) {
+            el.classList.remove('waypoint-active')
+          } else {
+            el.classList.add('waypoint-active')
+          }
+        }
+
+        // scrolling down
+        if (going === this.$waypointMap.GOING_IN) {
+          if (direction === this.$waypointMap.DIRECTION_TOP) {
+            el.classList.add('waypoint-active')
+          }
         }
       }
     },
