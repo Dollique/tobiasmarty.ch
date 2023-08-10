@@ -66,7 +66,7 @@ export default {
     }
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       @include porftolio-hover;
     }
