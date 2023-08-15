@@ -4,21 +4,19 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 </script>
 
 <style lang="scss" scoped>
 @import 'assets/scss/imports/headers.scss';
 
-.richtext  {
+.richtext {
   ::v-deep {
     h1,
     h2,

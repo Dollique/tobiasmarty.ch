@@ -2,7 +2,11 @@
   <section v-editable="blok" class="swiper" :class="`swiper-type-${blok.type}`">
     <div class="swiper-wrapper">
       <div v-for="blok in blok.item" :key="blok._uid" class="swiper-slide">
-        <component :is="blok.component" :blok="blok" />
+        <StoryblokComponent
+          v-for="blok in blok.component"
+          :key="blok._uid"
+          :blok="blok"
+        />
       </div>
     </div>
 

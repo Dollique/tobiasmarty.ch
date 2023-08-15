@@ -1,92 +1,42 @@
+import { readdirSync } from 'fs';
 const styleFiles = (path) => {
-  const fs = require('fs')
-  const files = fs.readdirSync(path)
-
-  return files.map(i => path + i)
+  const files = readdirSync(path);
+  return files.map(i => path + i);
 }
 
-export default {
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'tobiasmarty.ch',
-    htmlAttrs: {
-      lang: 'en',
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-      { rel: 'apple-touch-icon', href: '/favicon_apple_touch.png' },
-      { rel: 'manifest', href: '/manifest.webmanifest' },
-    ],
-    script: [
-      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js' },
-      { async: true, src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js' },
-    ],
-  },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: styleFiles('./assets/scss/globals/'),
 
-  // needed for style-resources module
+  // TODO: REPLACE FOR NUXT 3 COMPATIBILITY
   styleResources: {
-    scss: ['./assets/scss/variables/*.scss','./assets/scss/mixins.scss']
+    scss: ['./assets/scss/variables/*.scss', './assets/scss/mixins.scss']
   },
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/components',
-    '~/plugins/composition-api.js',
-    '~/plugins/storyblok-rich-text-renderer.js',
-    { src: '~/plugins/vue-waypoint.js', mode: 'client' }
-  ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-
-    // https://www.npmjs.com/package/nuxt-gsap-module
-    'nuxt-gsap-module'
+  components: [
+    { path: '~/components/content', prefix: 'SB_' },
+    { path: '~/components/form', prefix: 'SB_' },
+    { path: '~/components/site' },
+    { path: '~/components/templates' },
   ],
 
   gsap: {},
-
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
+    '@nuxtjs/eslint-module',
     [
-      'storyblok-nuxt',
+      '@storyblok/nuxt',
       {
-        accessToken: process.env.TOBIASMARTY_STORYBLOK_TOKEN,
-        cacheProvider: 'memory'
+        accessToken: process.env.TOBIASMARTY_STORYBLOK_TOKEN
       }
     ],
+    '@hypernym/nuxt-gsap'
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
-  },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-      transpile: [
-        '@marvr/storyblok-rich-text-vue-renderer'
+    transpile: [
+      '@marvr/storyblok-rich-text-vue-renderer'
     ],
     standalone: true, // fix swiperJS 8 -> https://github.com/seosmmbusiness/NuxtJs-SwiperJs8
   },
@@ -120,4 +70,4 @@ export default {
       })
     } */
   }
-}
+})

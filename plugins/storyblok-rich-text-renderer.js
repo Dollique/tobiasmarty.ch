@@ -5,15 +5,16 @@ import VueRichTextRenderer from '@marvr/storyblok-rich-text-vue-renderer'
 import Teaser from '~/components/content/Title.vue'
 import Image from '~/components/content/Image.vue'
 
+// TODO: Test if Images in RichText works
 Vue.component('SB_Image', Image)
 
-Vue.use(VueRichTextRenderer, {
-  resolvers: {
-    components: {
-      mytitle: Teaser,
-      myimage: Image,
-    },
-  }
-});
-
-
+export default defineNuxtPlugin(nuxtApp => {
+  nuxtApp.vueApp.use(VueRichTextRenderer, {
+    resolvers: {
+      components: {
+        mytitle: Teaser,
+        myimage: Image,
+      },
+    }
+  });
+})

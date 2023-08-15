@@ -29,29 +29,27 @@
   </picture>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    resize(image, option) {
-      if (!image) return
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-      let imageService = '//a.storyblok.com'
-      let path = image.replace('https://a.storyblok.com', '') // -> /f/148502/718x112/769dd796c1/mind-control1_mobile.jpg
+const resize = function (image, option) {
+  if (!image) return
 
-      return imageService + path + '/m/' + option // -> //a.storyblok.com//400x100/f/148502/718x112/769dd796c1/mind-control1_mobile.jpg/m
-    },
-  },
-  mounted() {
-    // var example = '//a.storyblok.com/f/39898/bd04dbf53c/amp_blog.jpg'
-    // console.log(this.resize(example, '500x500'))
-  },
+  let imageService = '//a.storyblok.com'
+  let path = image.replace('https://a.storyblok.com', '') // -> /f/148502/718x112/769dd796c1/mind-control1_mobile.jpg
+
+  return imageService + path + '/m/' + option // -> //a.storyblok.com//400x100/f/148502/718x112/769dd796c1/mind-control1_mobile.jpg/m
 }
+
+onMounted(() => {
+  // var example = '//a.storyblok.com/f/39898/bd04dbf53c/amp_blog.jpg'
+  // console.log(this.resize(example, '500x500'))
+})
 </script>
 
 <style lang="scss" scoped>

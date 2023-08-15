@@ -13,6 +13,8 @@
 </template>
 
 <script>
+const router = useRouter()
+
 export default {
   props: {
     blok: {
@@ -32,19 +34,19 @@ export default {
     },
   },
   mounted() {
-    if (this.$router) {
+    if (router) {
       this.addListeners()
     }
   },
 
   beforeUnmount() {
-    if (this.$router) {
+    if (router) {
       this.removeListeners()
     }
   },
 
   updated() {
-    if (this.$router) {
+    if (router) {
       this.removeListeners()
       this.$nextTick(() => {
         this.addListeners()
@@ -88,7 +90,7 @@ export default {
       // TODO: add if it is the same domain check
       if (href && href[0] === '/' && target !== '_blank') {
         event.preventDefault()
-        this.$router && this.$router.push(href)
+        router && router.push(href)
       }
     },
 

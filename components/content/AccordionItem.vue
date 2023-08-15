@@ -7,44 +7,41 @@
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    // https://stackoverflow.com/questions/44467909/animating-max-height-with-pure-js
-    slidetoggle() {
-      const item = this.$el
-      const el = this.$el.querySelector('.accordion-item__content')
-      const ch = el.clientHeight,
-        sh = el.scrollHeight,
-        isCollapsed = !ch,
-        noHeightSet = !el.style.height
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-      if (isCollapsed || noHeightSet) {
-        this.$parent.closeAll() // close all open items
+// https://stackoverflow.com/questions/44467909/animating-max-height-with-pure-js
+const slidetoggle = function () {
+  const item = this.$el
+  const el = this.$el.querySelector('.accordion-item__content')
+  const ch = el.clientHeight,
+    sh = el.scrollHeight,
+    isCollapsed = !ch,
+    noHeightSet = !el.style.height
 
-        el.style.height = sh + 'px'
-        item.classList.add('active')
-      } else {
-        el.style.height = 0 + 'px'
-        item.classList.remove('active')
-      }
+  if (isCollapsed || noHeightSet) {
+    this.$parent.closeAll() // close all open items
 
-      if (noHeightSet) return this.slidetoggle.call(this, false)
-    },
-    closeItems() {
-      const item = this.$el
-      const el = this.$el.querySelector('.accordion-item__content')
+    el.style.height = sh + 'px'
+    item.classList.add('active')
+  } else {
+    el.style.height = 0 + 'px'
+    item.classList.remove('active')
+  }
 
-      el.style.height = 0 + 'px'
-      item.classList.remove('active')
-    },
-  },
+  if (noHeightSet) return this.slidetoggle.call(this, false)
+}
+const closeItems = function () {
+  const item = this.$el
+  const el = this.$el.querySelector('.accordion-item__content')
+
+  el.style.height = 0 + 'px'
+  item.classList.remove('active')
 }
 </script>
 
@@ -131,7 +128,9 @@ h2 {
 .accordion-item__content {
   height: 0;
   opacity: 0;
-  transition: height 0.25s, opacity 0.15s ease-in-out;
+  transition:
+    height 0.25s,
+    opacity 0.15s ease-in-out;
 }
 
 .accordion-item {

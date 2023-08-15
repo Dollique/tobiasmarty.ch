@@ -1,57 +1,29 @@
+<!-- TODO: REWRITE FOR COMPATIBILITY WITH NUXT 3 -->
+
 <template>
-  <div>
-    <Article :blok="articles.story.content" />
-  </div>
+  <StoryblokComponent
+    v-if="story.content.component"
+    :key="story.content._uid"
+    :blok="story.content"
+  />
 </template>
 
 <script>
-import Article from '~/components/templates/Article.vue'
-
 export default {
-  components: {
-    Article,
-  },
-  async asyncData(context) {
-    // Load the JSON from the API
+  asyncData(context) {
     const version =
       context.query._storyblok || context.isDev ? 'draft' : 'published'
     // const version = process.env.MNN_STORYBLOK_VERSION
 
-    const [articlesRes] = await Promise.all([
-      context.app.$storyapi.get(`cdn/stories/articles/${context.params.slug}`, {
-        version,
-        resolve_relations: 'global_reference.reference',
-        resolve_links: 'url',
-      }),
+    const fullSlug =
+      context.route.path === '/' || context.route.path === ''
+        ? 'home'
+        : context.route.path
 
-      /* context.app.$storyapi.get(`cdn/links/`, {
-        starts_with: 'articles/', // exclude 'article' slug
-        version,
-        resolve_relations: 'global_reference.reference',
-      }), */
-    ]).catch((res) => {
-      if (!res.response) {
-        console.error(res)
-        context.error({
-          statusCode: 404,
-          message: 'Failed to receive content form api',
-        })
-      } else {
-        console.error(res.response.data)
-        context.error({
-          statusCode: res.response.status,
-          message: res.response.data,
-        })
-      }
-    })
+    // Load the JSON from the API - loadig the home content (index page)
 
-    return {
-      articles: articlesRes.data,
-      // links: linksRes.data.links,
-    }
-
-    /* return context.app.$storyapi
-      .get(`cdn/stories/articles/${context.params.slug}`, {
+    const myData = context.app.$storyapi
+      .get('cdn/stories/' + fullSlug, {
         version,
         resolve_relations: 'global_reference.reference',
       })
@@ -61,30 +33,46 @@ export default {
       .catch((res) => {
         if (!res.response) {
           console.error(res)
+
           context.error({
             statusCode: 404,
             message: 'Failed to receive content form api',
           })
         } else {
           console.error(res.response.data)
+
           context.error({
             statusCode: res.response.status,
             message: res.response.data,
           })
         }
+      })
+
+    /* getGlobals = context.app.$storyapi
+
+    console.log('MY DATA', myData)
+    .get('cdn/stories/' + fullSlug, {
+        version,
+      })
+      .then((res) => {
+        return res.data
       }) */
+
+    return myData
   },
+
   data() {
     return {
-      articles: { content: {} },
-      links: {},
+      story: { content: {} },
     }
   },
+
   mounted() {
     this.$storybridge(() => {
       const storyblokInstance = new StoryblokBridge()
 
       // Use the input event for instant update of content
+
       storyblokInstance.on('input', (event) => {
         //console.log(this.story.content)
         if (event.story.id === this.story.id) {
@@ -93,10 +81,13 @@ export default {
       })
 
       // Use the bridge to listen the events
-      storyblokInstance.on(['published', 'change'], () => {
+
+      storyblokInstance.on(['published', 'change'], (event) => {
         // window.location.reload()
+
         this.$nuxt.$router.go({
           path: this.$nuxt.$router.currentRoute,
+
           force: true,
         })
       })
@@ -104,4 +95,3 @@ export default {
   },
 }
 </script>
-

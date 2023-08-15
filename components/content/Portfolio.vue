@@ -6,38 +6,44 @@
         v-for="blok in blok.content"
         :key="blok._uid"
       >
-        <component :is="blok.component" :blok="blok" />
+        <StoryblokComponent
+          v-for="blok in blok.component"
+          :key="blok._uid"
+          :blok="blok"
+        />
       </div>
     </div>
 
-    <component :is="blok.image[0].component" :blok="blok.image[0]" />
+    <StoryblokComponent
+      v-for="blok in blok.image[0].component"
+      :key="blok._uid"
+      :blok="blok.image[0]"
+    />
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    toggleActive(event) {
-      if (!this.isLink(event.target)) {
-        this.isActive = !this.isActive
-        this.$el.classList.toggle('active')
-      }
-    },
-    isLink(element) {
-      // checks if element either is a link or has link parents
-      while (element) {
-        if (element.tagName === 'A') return true
-        element = element.parentElement
-      }
-      return false
-    },
-  },
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
+
+const toggleActive = function (event) {
+  if (!this.isLink(event.target)) {
+    this.isActive = !this.isActive
+    this.$el.classList.toggle('active')
+  }
+}
+
+const isLink = function (element) {
+  // checks if element either is a link or has link parents
+  while (element) {
+    if (element.tagName === 'A') return true
+    element = element.parentElement
+  }
+  return false
 }
 </script>
 

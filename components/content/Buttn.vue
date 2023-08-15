@@ -9,24 +9,21 @@
   </h2>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    getClasses() {
-      const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
-      const add_margin_bottom = this.blok.add_margin_bottom
-        ? ' add_margin_bottom'
-        : ''
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-      return add_gutter + add_margin_bottom
-    },
-  },
+const getClasses = function () {
+  const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
+  const add_margin_bottom = this.blok.add_margin_bottom
+    ? ' add_margin_bottom'
+    : ''
+
+  return add_gutter + add_margin_bottom
 }
 </script>
 

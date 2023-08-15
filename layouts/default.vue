@@ -1,6 +1,6 @@
 <template>
   <div class="page_wrapper">
-    <Nuxt />
+    <slot />
     <canvas class="glitch"></canvas>
   </div>
 </template>

@@ -9,19 +9,21 @@
       <span class="author">{{ blok.author }}</span>
     </blockquote>
 
-    <component :is="blok.image[0].component" :blok="blok.image[0]" />
+    <StoryblokComponent
+      v-for="blok in blok.image[0].component"
+      :key="blok._uid"
+      :blok="blok.image[0]"
+    />
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 </script>
 
 <style lang="scss" scoped>

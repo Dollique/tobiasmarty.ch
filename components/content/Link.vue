@@ -27,21 +27,23 @@
         v-for="blok in blok.blocklink"
         :key="blok._uid"
       >
-        <component :is="blok.component" :blok="blok" />
+        <StoryblokComponent
+          v-for="blok in blok.component"
+          :key="blok._uid"
+          :blok="blok"
+        />
       </div>
     </a>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 </script>
 
 <style lang="scss" scoped>

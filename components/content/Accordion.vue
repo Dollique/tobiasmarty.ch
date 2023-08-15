@@ -1,26 +1,28 @@
 <template>
   <section class="accordion">
     <div v-for="blok in blok.item" :key="blok._uid" class="">
-      <component :is="blok.component" :blok="blok" ref="childAccordion" />
+      <StoryblokComponent
+        v-for="blok in blok.component"
+        :key="blok._uid"
+        :blok="blok"
+        ref="childAccordion"
+      />
     </div>
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    closeAll() {
-      for (let childs of this.$refs.childAccordion) {
-        childs.closeItems()
-      }
-    },
-  },
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
+
+const closeAll = function () {
+  for (let childs of this.$refs.childAccordion) {
+    childs.closeItems()
+  }
 }
 </script>
 

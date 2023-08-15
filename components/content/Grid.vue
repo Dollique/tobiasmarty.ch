@@ -1,35 +1,36 @@
-  <template>
+<template>
   <div v-editable="blok" class="grid-wrapper flex" :class="getClasses()">
     <div v-for="blok in blok.columns" :key="blok._uid">
-      <component :is="blok.component" :blok="blok" />
+      <StoryblokComponent
+        v-for="blok in blok.component"
+        :key="blok._uid"
+        :blok="blok"
+      />
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    getClasses() {
-      const force_row = this.blok.force_row ? 'force_row' : ''
-      const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
-      const add_margin_bottom = this.blok.add_margin_bottom
-        ? ' add_margin_bottom'
-        : ''
-      const gap = this.blok.gap !== '' ? ' ' + this.blok.gap : ''
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-      const justify = this.blok.justify_content
-        ? ' justify_' + this.blok.justify_content
-        : ''
+const getClasses = function () {
+  const force_row = this.blok.force_row ? 'force_row' : ''
+  const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
+  const add_margin_bottom = this.blok.add_margin_bottom
+    ? ' add_margin_bottom'
+    : ''
+  const gap = this.blok.gap !== '' ? ' ' + this.blok.gap : ''
 
-      return force_row + add_gutter + add_margin_bottom + gap + justify
-    },
-  },
+  const justify = this.blok.justify_content
+    ? ' justify_' + this.blok.justify_content
+    : ''
+
+  return force_row + add_gutter + add_margin_bottom + gap + justify
 }
 </script>
 

@@ -1,10 +1,9 @@
 <template>
   <div class="main-wrapper">
-    <Header :blok="blok" />
+    <SiteHeader :blok="blok" />
 
     <main v-editable="blok">
-      <component
-        :is="blok.component"
+      <StoryblokComponent
         v-for="blok in blok.body"
         :key="blok._uid"
         :blok="blok"
@@ -17,74 +16,65 @@
       />
     </main>
 
-    <!--ArticleNavigation :blok="blok" /-->
-    <Footer />
+    <!--SiteArticleNavigation :blok="blok" /-->
+    <SiteFooter />
   </div>
 </template>
 
-<script>
-import Header from '~/components/site/Header.vue'
-import Footer from '~/components/site/Footer.vue'
-import ArticleNavigation from '~/components/site/ArticleNavigation.vue'
+<script setup lang="ts">
+defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-export default {
-  components: {
-    Header,
-    Footer,
-    ArticleNavigation,
-  },
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  data: () => ({
-    intersectionOptions: {
-      root: null,
-      rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
-      threshold: [0, 0.75], // script is executed at 0% and 75% visibility
-    },
-  }),
-  methods: {
-    onWaypoint({ going, direction, el }) {
-      if (
-        // ignore horizontal changes (including fade-in animation)
-        direction == this.$waypointMap.DIRECTION_LEFT ||
-        direction == this.$waypointMap.DIRECTION_RIGHT
-      ) {
-        return
-      }
+const { data: intersectionOptions } = {
+    data: () => ({
+      intersectionOptions: {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
+        threshold: [0, 0.75], // script is executed at 0% and 75% visibility
+      },
+    })
+    }
 
-      if (
-        // initial load
-        typeof direction === 'undefined' &&
-        going === this.$waypointMap.GOING_IN
-      ) {
-        el.classList.add('waypoint-active')
-        return
-      } else {
-        // behavior when scrolling
+const onWaypoint = function({ going, direction, el }) {
+    if (
+      // ignore horizontal changes (including fade-in animation)
+      direction == this.$waypointMap.DIRECTION_LEFT ||
+      direction == this.$waypointMap.DIRECTION_RIGHT
+    ) {
+      return
+    }
 
-        // scrolling up
-        if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
-          if (going === this.$waypointMap.GOING_OUT) {
-            el.classList.remove('waypoint-active')
-          } else {
-            el.classList.add('waypoint-active')
-          }
-        }
+    if (
+      // initial load
+      typeof direction === 'undefined' &&
+      going === this.$waypointMap.GOING_IN
+    ) {
+      el.classList.add('waypoint-active')
+      return
+    } else {
+      // behavior when scrolling
 
-        // scrolling down
-        if (going === this.$waypointMap.GOING_IN) {
-          if (direction === this.$waypointMap.DIRECTION_TOP) {
-            el.classList.add('waypoint-active')
-          }
+      // scrolling up
+      if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
+        if (going === this.$waypointMap.GOING_OUT) {
+          el.classList.remove('waypoint-active')
+        } else {
+          el.classList.add('waypoint-active')
         }
       }
-    },
-  },
-}
+
+      // scrolling down
+      if (going === this.$waypointMap.GOING_IN) {
+        if (direction === this.$waypointMap.DIRECTION_TOP) {
+          el.classList.add('waypoint-active')
+        }
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

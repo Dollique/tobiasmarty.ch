@@ -1,49 +1,37 @@
 <template>
   <div class="main-wrapper" :class="routeClass">
-    <Header :blok="blok" :showNav="false" />
+    <SiteHeader :blok="blok" :showNav="false" />
 
     <section v-editable="blok" class="page flex">
-      <component
-        :is="blok.component"
+      <StoryblokComponent
         v-for="blok in blok.body"
         :key="blok._uid"
         :blok="blok"
       />
     </section>
 
-    <Footer />
+    <SiteFooter />
   </div>
 </template>
 
-<script>
-import Header from '~/components/site/Header.vue'
-import Footer from '~/components/site/Footer.vue'
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-export default {
-  components: {
-    Header,
-    Footer,
-  },
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  data: () => ({
-    routeClass: '',
-  }),
-  fetch() {
-    let getRouteClass
-    if (typeof this.$nuxt.$route.params.slug !== 'undefined') {
-      getRouteClass = this.$nuxt.$route.params.slug
-    } else {
-      getRouteClass = 'home'
-    }
+const { data: routeClass } = await useAsyncData(() => {
+  let getRouteClass
+  if (typeof this.$nuxt.$route.params.slug !== 'undefined') {
+    getRouteClass = this.$nuxt.$route.params.slug
+  } else {
+    getRouteClass = 'home'
+  }
 
-    this.routeClass = 'route__' + getRouteClass
-  },
-}
+  return 'route__' + getRouteClass
+})
 </script>
 
 <style lang="scss" scoped>

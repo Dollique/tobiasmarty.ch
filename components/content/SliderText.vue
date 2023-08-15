@@ -1,8 +1,8 @@
 <template>
   <div v-editable="blok" class="slider-wrapper">
     <template v-for="(blok, index) in blok.columns">
-      <component
-        :is="blok.component"
+      <StoryblokComponent
+        v-for="blok in blok.component"
         :key="blok._uid"
         :blok="blok"
         class="slider-item"
@@ -12,30 +12,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  mounted() {
-    this.boxRotation()
-  },
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
 
-  methods: {
-    boxRotation() {
-      const gsap = this.$gsap.timeline({ repeat: -1, repeatDelay: 1 })
+onMounted(() => {
+  boxRotation()
+})
 
-      gsap.to('.slider-index--0', { autoAlpha: 1, duration: 1 })
-      gsap.to('.slider-index--0', { autoAlpha: 0, duration: 1, delay: 2 })
-      gsap.to('.slider-index--1', { autoAlpha: 1, duration: 1 })
-      gsap.to('.slider-index--1', { autoAlpha: 0, duration: 1, delay: 2 })
-      gsap.to('.slider-index--2', { autoAlpha: 1, duration: 1 })
-      gsap.to('.slider-index--2', { autoAlpha: 0, duration: 1, delay: 2 })
-    },
-  },
+const boxRotation = function () {
+  const gsap = this.$gsap.timeline({ repeat: -1, repeatDelay: 1 })
+
+  gsap.to('.slider-index--0', { autoAlpha: 1, duration: 1 })
+  gsap.to('.slider-index--0', { autoAlpha: 0, duration: 1, delay: 2 })
+  gsap.to('.slider-index--1', { autoAlpha: 1, duration: 1 })
+  gsap.to('.slider-index--1', { autoAlpha: 0, duration: 1, delay: 2 })
+  gsap.to('.slider-index--2', { autoAlpha: 1, duration: 1 })
+  gsap.to('.slider-index--2', { autoAlpha: 0, duration: 1, delay: 2 })
 }
 </script>
 
