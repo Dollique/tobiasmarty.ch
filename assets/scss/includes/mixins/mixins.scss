@@ -36,20 +36,16 @@
 
 @mixin addHR($position: '') {
   $border_style: 2px solid;
-  border-image: url("~/assets/img/line.jpg") 2;
+  border-image: url('~/assets/img/line.jpg') 2;
 
-  @if($position =='') {
+  @if ($position == '') {
     border: $border_style;
-  }
-
-  @else if($position =='top') {
+  } @else if($position == 'top') {
     border-top: $border_style;
     border-left: none;
     border-right: none;
     border-bottom: none;
-  }
-
-  @else if($position =='bottom') {
+  } @else if($position == 'bottom') {
     border-bottom: $border_style;
     border-left: none;
     border-right: none;
@@ -71,11 +67,9 @@
 
 // add fallback fonts
 @mixin fontFamily($font, $fallback: '') {
-  @if $fallback =='' {
+  @if $fallback == '' {
     font-family: $font, Arial, Helvetica, sans-serif;
-  }
-
-  @else {
+  } @else {
     font-family: $font, $fallback;
   }
 }

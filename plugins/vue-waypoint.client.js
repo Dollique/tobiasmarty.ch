@@ -1,5 +1,5 @@
-import VueWaypoint from 'vue-waypoint'
+import { Waypoint } from 'vue-waypoint'
 
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.use(VueWaypoint)
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.use(Waypoint)
 })

@@ -15,13 +15,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   blok: {
     type: Object
     required: true
   }
 }>()
 
+/*
 const { data: routeClass } = await useAsyncData(() => {
   let getRouteClass
   if (typeof this.$nuxt.$route.params.slug !== 'undefined') {
@@ -31,11 +32,10 @@ const { data: routeClass } = await useAsyncData(() => {
   }
 
   return 'route__' + getRouteClass
-})
+}) */
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/mixins.scss';
 @import 'assets/scss/imports/headers.scss';
 @import 'assets/scss/imports/grid.scss';
 

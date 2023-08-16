@@ -1,12 +1,15 @@
-export const state = () => ({
-  navOpen: false
-})
+import { defineStore } from 'pinia'
 
-export const mutations = {
-  toggle(state) {
-      state.navOpen = !state.navOpen
+export const useNavigationStore = defineStore('navigation', {
+  state: () => ({
+    navOpen: false,
+  }),
+  actions: {
+    toggle() {
+      this.navOpen = !this.navOpen
+    },
+    close() {
+      this.navOpen = false
+    },
   },
-  close(state) {
-    state.navOpen = false
-  }
-}
+})

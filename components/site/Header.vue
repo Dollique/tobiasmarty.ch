@@ -28,34 +28,24 @@
   </header>
 </template>
 
-<script>
-import Burger from '~/components/site/Burger.vue'
-import Navigation from '~/components/site/Navigation.vue'
-import Lain from '~/components/site/Lain.vue'
+<script setup lang="ts">
+const { $navigationStore } = useNuxtApp() // get the store data
 
-export default {
-  components: {
-    Burger,
-    Navigation,
-    Lain,
-  },
-  props: {
-    showNav: {
-      required: false,
-      type: Boolean,
-      default: true,
-    },
-    blok: {
-      type: Object,
-      required: false,
-      default: () => undefined,
-    },
-  },
-  computed: {
-    navOpen() {
-      return this.$store.state.navigation.navOpen
-    },
-  },
+defineProps<{
+  blok: {
+    type: Object
+    required: false
+    default: () => undefined
+  }
+  showNav: {
+    required: false
+    type: Boolean
+    default: true
+  }
+}>()
+
+const navOpen = function () {
+  return $navigationStore.navOpen
 }
 </script>
 

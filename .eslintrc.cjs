@@ -1,15 +1,23 @@
 module.exports = {
   root: true,
   env: {
-    "vue/setup-compiler-macros": true,
+    'vue/setup-compiler-macros': true,
     browser: true,
     node: true,
   },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "sourceType": "module"
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
-  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:prettier/recommended', 'prettier'],
-  plugins: ['prettier'],
-  rules: { 'prettier/prettier': 2 },
-};
+  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:prettier/recommended'],
+  plugins: [],
+  rules: {
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['default', '[...slug]'], // ignores ~/layouts/default.vue
+      },
+    ],
+  },
+}

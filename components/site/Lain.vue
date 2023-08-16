@@ -2,20 +2,19 @@
   <hr />
 </template>
 
-<script>
-export default {
-  props: {
-    mirror: {
-      type: Boolean,
-      required: false,
-    },
-  },
-  mounted() {
-    if (this.mirror) {
-      document.querySelector('hr').classList.add('mirror')
-    }
-  },
-}
+<script setup lang="ts">
+const props = defineProps<{
+  blok: {
+    type: Object
+    required: true
+  }
+}>()
+
+onMounted(() => {
+  if (props.blok.mirror) {
+    document.querySelector('hr').classList.add('mirror')
+  }
+})
 </script>
 
 <style lang="scss" scoped>

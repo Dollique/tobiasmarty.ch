@@ -1,43 +1,49 @@
-import { readdirSync } from 'fs';
-const styleFiles = (path) => {
-  const files = readdirSync(path);
-  return files.map(i => path + i);
-}
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  css: styleFiles('./assets/scss/globals/'),
-
-  // TODO: REPLACE FOR NUXT 3 COMPATIBILITY
-  styleResources: {
-    scss: ['./assets/scss/variables/*.scss', './assets/scss/mixins.scss']
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+            @import "@/assets/scss/includes/variables/colors.scss";
+            @import "@/assets/scss/includes/variables/structure.scss";
+            @import "@/assets/scss/includes/mixins/mixins.scss";
+            @import "@/assets/scss/includes/globals/fonts.scss";
+            @import "@/assets/scss/includes/globals/global.scss";
+            @import "@/assets/scss/includes/globals/resets.scss";
+            @import "@/assets/scss/includes/globals/transition.scss";
+          `,
+        },
+      },
+    },
   },
 
   components: [
-    { path: '~/components/content', prefix: 'SB_' },
-    { path: '~/components/form', prefix: 'SB_' },
+    { path: '~/components/storyblok/content' },
+    { path: '~/components/storyblok/form' },
+    { path: '~/components/storyblok/templates' },
     { path: '~/components/site' },
-    { path: '~/components/templates' },
   ],
 
   gsap: {},
   modules: [
+    '@pinia/nuxt', // Vue Store
     '@nuxtjs/eslint-module',
     [
       '@storyblok/nuxt',
       {
-        accessToken: process.env.TOBIASMARTY_STORYBLOK_TOKEN
-      }
+        accessToken: process.env.TOBIASMARTY_STORYBLOK_TOKEN,
+        bridge: true,
+        devtools: true,
+      },
     ],
-    '@hypernym/nuxt-gsap'
+    '@hypernym/nuxt-gsap',
   ],
   build: {
-    transpile: [
-      '@marvr/storyblok-rich-text-vue-renderer'
-    ],
+    transpile: ['@marvr/storyblok-rich-text-vue-renderer'],
     standalone: true, // fix swiperJS 8 -> https://github.com/seosmmbusiness/NuxtJs-SwiperJs8
   },
 
@@ -69,5 +75,5 @@ export default defineNuxtConfig({
         onComplete: done
       })
     } */
-  }
+  },
 })

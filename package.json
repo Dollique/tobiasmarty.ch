@@ -19,14 +19,14 @@
     "sass": "^1.49.9",
     "sass-loader": "^10.2.1",
     "swiper": "^9.3.2",
-    "vue-waypoint": "^3.5.2"
+    "vue-waypoint": "^4.2.5"
   },
   "devDependencies": {
     "@hypernym/nuxt-gsap": "^2.2.2",
-    "@marvr/storyblok-rich-text-vue-renderer": "^2.0.1",
     "@nuxt/devtools": "^0.8.0",
     "@nuxtjs/eslint-config-typescript": "^7.0.2",
     "@nuxtjs/eslint-module": "^4.1.0",
+    "@pinia/nuxt": "^0.4.11",
     "@storyblok/nuxt": "^5.6.4",
     "@types/node": "^20.5.0",
     "@typescript-eslint/parser": "^6.4.0",
@@ -35,6 +35,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
     "nuxt": "^3.6.5",
+    "pinia": "^2.1.6",
     "prettier": "^3.0.2",
     "typescript": "^5.1.6"
   }

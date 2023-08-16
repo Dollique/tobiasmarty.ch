@@ -18,6 +18,8 @@
 </template>
 
 <script>
+const { $formStore } = useNuxtApp() // get the store data
+
 export default {
   props: {
     blok: {
@@ -37,7 +39,7 @@ export default {
 
       console.log('test', this.inputs)
       console.log('test 2', this.inputs2)
-      console.log('test VUEX', this.$store.state.forms.formData)
+      console.log('test STORE', $formStore.formData)
 
       var formRequest = new Request(formApiEndpoint, {
         method: 'POST',

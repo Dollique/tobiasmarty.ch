@@ -13,6 +13,7 @@
 </template>
 
 <script>
+const { $navigationStore } = useNuxtApp() // get the store data
 const router = useRouter()
 
 export default {
@@ -30,7 +31,7 @@ export default {
   },
   computed: {
     navOpen() {
-      return this.$store.state.navigation.navOpen
+      return $navigationStore.navOpen
     },
   },
   mounted() {

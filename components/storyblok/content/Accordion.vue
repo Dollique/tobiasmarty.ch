@@ -1,5 +1,5 @@
 <template>
-  <section class="accordion">
+  <section v-editable="blok" class="accordion">
     <div v-for="blok in blok.item" :key="blok._uid" class="">
       <StoryblokComponent
         v-for="blok in blok.component"

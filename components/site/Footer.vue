@@ -99,16 +99,6 @@
   </footer>
 </template>
 
-<script>
-import Lain from '~/components/site/Lain.vue'
-
-export default {
-  components: {
-    Lain,
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 footer {
   @include addGutter;

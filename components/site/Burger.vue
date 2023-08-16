@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+const { $navigationStore } = useNuxtApp() // get the store data
 
 export default {
   computed: {
     navOpen() {
-      return this.$store.state.navigation.navOpen
+      return $navigationStore.navOpen
     },
   },
   methods: {
     ...mapMutations({
-      toggle: 'navigation/toggle',
+      toggle: $navigationStore.toggle(),
     }),
   },
 }

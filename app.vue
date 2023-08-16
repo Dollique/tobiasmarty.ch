@@ -1,11 +1,16 @@
-<script setup lang="ts">
-const title = ref('tobiasmarty.ch')
-const description = ref('')
+<template>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+</template>
 
+<script setup lang="ts">
 useHead({
-  title,
+  title: 'tobiasmarty.ch',
   meta: [
-    { name: 'description', content: description },
+    { name: 'description', content: '' },
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'format-detection', content: 'telephone=no' },
@@ -22,6 +27,10 @@ useHead({
   script: [
     {
       async: true,
+      src: 'https://app.storyblok.com/f/storyblok-v2-latest.js',
+    },
+    {
+      async: true,
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js',
     },
     {
@@ -31,12 +40,3 @@ useHead({
   ],
 })
 </script>
-
-
-<template>
-  <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
-</template>
