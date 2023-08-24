@@ -1,23 +1,19 @@
 <template>
   <div v-editable="blok" class="portfolio-wrapper" v-on:click="toggleActive">
     <div class="portfolio__content">
-      <div
-        class="portfolio__content_item"
-        v-for="blok in blok.content"
-        :key="blok._uid"
-      >
+      <div class="portfolio__content_item">
         <StoryblokComponent
-          v-for="blok in blok.component"
-          :key="blok._uid"
-          :blok="blok"
+          v-for="childblok in blok.content"
+          :key="childblok._uid"
+          :blok="childblok"
         />
       </div>
     </div>
 
     <StoryblokComponent
-      v-for="blok in blok.image[0].component"
-      :key="blok._uid"
-      :blok="blok.image[0]"
+      v-for="childBlok in blok.image"
+      :key="childBlok._uid"
+      :blok="childBlok"
     />
   </div>
 </template>

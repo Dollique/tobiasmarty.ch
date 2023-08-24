@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper" :class="routeClass">
-    <SiteHeader :blok="blok" :showNav="false" />
+    <SiteHeader :blok="blok" :show-nav="false" />
 
     <section v-editable="blok" class="page flex">
       <StoryblokComponent
@@ -22,17 +22,14 @@ defineProps<{
   }
 }>()
 
-/*
-const { data: routeClass } = await useAsyncData(() => {
-  let getRouteClass
-  if (typeof this.$nuxt.$route.params.slug !== 'undefined') {
-    getRouteClass = this.$nuxt.$route.params.slug
-  } else {
-    getRouteClass = 'home'
-  }
+const getRouteClass = useRoute()
+let routeClass = 'route__'
 
-  return 'route__' + getRouteClass
-}) */
+if (typeof getRouteClass.params.slug !== 'undefined') {
+  routeClass += getRouteClass.params.slug
+} else {
+  routeClass += 'home'
+}
 </script>
 
 <style lang="scss" scoped>

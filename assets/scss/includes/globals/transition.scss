@@ -1,7 +1,7 @@
 .page {
   &-enter-active,
   &-leave-active {
-    transition: opacity .55s;
+    transition: opacity 0.55s;
   }
 
   &-enter,
@@ -9,14 +9,13 @@
     opacity: 0;
 
     & + .glitch {
-      display: block  !important;
+      display: block !important;
     }
   }
 }
 
-
 // content fade-in (using vue-waypoint)
-.waypoint {
+/*.waypoint {
   opacity: 0;
   transform: translate3d(-200px, 0, 0);
 }
@@ -38,5 +37,8 @@
 
 .waypoint,
 .waypoint-active {
-  transition: transform 1s, opacity 1.5s;
+  transition:
+    transform 1s,
+    opacity 1.5s;
 }
+*/

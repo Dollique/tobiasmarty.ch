@@ -46,7 +46,8 @@ export default {
     },
   },
   render() {
-    return this.$createElement('h' + this.hlevel, this.myTitle)
+    // h() is a helper function for creating elements -> https://vuejs.org/guide/extras/render-function.html
+    return h('h' + this.hlevel, this.myTitle)
   },
   mounted() {},
 }

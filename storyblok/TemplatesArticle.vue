@@ -2,18 +2,15 @@
   <div class="main-wrapper">
     <SiteHeader :blok="blok" />
 
-    <main v-editable="blok">
-      <StoryblokComponent
-        v-for="blok in blok.body"
-        :key="blok._uid"
-        :blok="blok"
-        class="waypoint"
-        v-waypoint="{
-          active: true,
-          callback: onWaypoint,
-          options: intersectionOptions,
-        }"
-      />
+    <main v-if="isClientRendered" v-editable="blok">
+      <Waypoint :options="options" @change="onChange">
+        <StoryblokComponent
+          v-for="childblok in blok.body"
+          :key="childblok._uid"
+          :blok="childblok"
+          class="waypoint"
+        />
+      </Waypoint>
     </main>
 
     <!--SiteArticleNavigation :blok="blok" /-->
@@ -29,21 +26,38 @@ defineProps<{
   }
 }>()
 
-const { data: intersectionOptions } = {
-  data: () => ({
-    intersectionOptions: {
-      root: null,
-      rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
-      threshold: [0, 0.75], // script is executed at 0% and 75% visibility
+defineComponent({
+  name: 'TemplatesArticle',
+  components: {
+    Waypoint: () => {
+      if (process.client) {
+        return import('vue-waypoint')
+      }
     },
-  }),
+  },
+})
+
+const isClientRendered = ref(false)
+
+onMounted(() => {
+  isClientRendered.value = true
+})
+
+const options: IntersectionObserverInit = {
+  root: null,
+  rootMargin: '0px 0px -100px 0px', // 0px 0px -100px 0px
+  threshold: [0, 0.75], // script is executed at 0% and 75% visibility
 }
 
-const onWaypoint = function ({ going, direction, el }) {
+const onChange = (waypointState) => {
+  const direction = waypointState.direction
+  const going = waypointState.going
+  const el = waypointState.element
+
   if (
     // ignore horizontal changes (including fade-in animation)
-    direction === this.$waypointMap.DIRECTION_LEFT ||
-    direction === this.$waypointMap.DIRECTION_RIGHT
+    direction === 'direction-left' ||
+    direction === 'direction-right'
   ) {
     return
   }
@@ -51,16 +65,15 @@ const onWaypoint = function ({ going, direction, el }) {
   if (
     // initial load
     typeof direction === 'undefined' &&
-    going === this.$waypointMap.GOING_IN
+    going === 'going-in'
   ) {
     el.classList.add('waypoint-active')
-    return
   } else {
     // behavior when scrolling
 
     // scrolling up
-    if (direction === this.$waypointMap.DIRECTION_BOTTOM) {
-      if (going === this.$waypointMap.GOING_OUT) {
+    if (direction === 'direction-bottom') {
+      if (going === 'going-out') {
         el.classList.remove('waypoint-active')
       } else {
         el.classList.add('waypoint-active')
@@ -68,8 +81,8 @@ const onWaypoint = function ({ going, direction, el }) {
     }
 
     // scrolling down
-    if (going === this.$waypointMap.GOING_IN) {
-      if (direction === this.$waypointMap.DIRECTION_TOP) {
+    if (going === 'going-in') {
+      if (direction === 'direction-top') {
         el.classList.add('waypoint-active')
       }
     }

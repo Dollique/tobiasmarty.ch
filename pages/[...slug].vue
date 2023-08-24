@@ -7,15 +7,13 @@
 </template>
 
 <script setup>
+const { slug } = useRoute().params
 // default view -> get everything from Storyblok
 const story = await useAsyncStoryblok(
-  'home-nuxt-3', // slug
+  slug && slug.length > 0 ? slug.join('/') : 'home',
   { version: 'draft', resolve_relations: 'global_reference.reference' }, // API Options
   { resolveRelations: ['global_reference.reference'] }, // Bridge Options
 )
-
-console.log('story', story)
-console.log('content', story.content)
 
 if (story.value.status) {
   throw createError({

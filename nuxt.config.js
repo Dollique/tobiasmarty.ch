@@ -21,12 +21,7 @@ export default defineNuxtConfig({
     },
   },
 
-  components: [
-    { path: '~/components/storyblok/content' },
-    { path: '~/components/storyblok/form' },
-    { path: '~/components/storyblok/templates' },
-    { path: '~/components/site' },
-  ],
+  components: [{ path: '~/components/site' }],
 
   gsap: {},
   modules: [
@@ -40,10 +35,10 @@ export default defineNuxtConfig({
         devtools: true,
       },
     ],
+    'nuxt-swiper',
     '@hypernym/nuxt-gsap',
   ],
   build: {
-    transpile: ['@marvr/storyblok-rich-text-vue-renderer'],
     standalone: true, // fix swiperJS 8 -> https://github.com/seosmmbusiness/NuxtJs-SwiperJs8
   },
 

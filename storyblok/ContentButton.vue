@@ -18,8 +18,8 @@ const props = defineProps<{
 }>()
 
 const getClasses = function () {
-  const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
-  const add_margin_bottom = this.blok.add_margin_bottom
+  const add_gutter = props.blok.add_gutter ? ' add_gutter' : ''
+  const add_margin_bottom = props.blok.add_margin_bottom
     ? ' add_margin_bottom'
     : ''
 

@@ -3,15 +3,16 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object,
+    required: false,
+    default: () => undefined,
+  },
+})
 
 onMounted(() => {
-  if (props.blok.mirror) {
+  if (props && props.blok && props.blok.mirror) {
     document.querySelector('hr').classList.add('mirror')
   }
 })

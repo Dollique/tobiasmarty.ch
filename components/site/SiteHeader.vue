@@ -1,5 +1,5 @@
 <template>
-  <header class="col-8" :class="{ navOpen }">
+  <header class="col-8" :class="$navigationStore.navOpen">
     <div class="wrapper-outer">
       <div class="grid grid-2col wrapper-inner">
         <template v-if="blok">
@@ -24,29 +24,25 @@
       </div>
     </div>
 
-    <Navigation :blok="blok" />
+    <SiteNavigation :blok="blok" />
   </header>
 </template>
 
 <script setup lang="ts">
 const { $navigationStore } = useNuxtApp() // get the store data
 
-defineProps<{
+defineProps({
   blok: {
-    type: Object
-    required: false
-    default: () => undefined
-  }
+    type: Object,
+    required: false,
+    default: () => undefined,
+  },
   showNav: {
-    required: false
-    type: Boolean
-    default: true
-  }
-}>()
-
-const navOpen = function () {
-  return $navigationStore.navOpen
-}
+    type: Boolean as PropType<boolean>,
+    required: false,
+    default: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

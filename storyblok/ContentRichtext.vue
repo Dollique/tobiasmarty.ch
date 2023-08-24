@@ -1,20 +1,18 @@
 <template>
   <div v-editable="blok" class="richtext">
-    <rich-text-renderer v-if="blok.body" :document="blok.body" />
+    <div v-html="renderedRichText"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-// TODO: CHECK IF THIS WORKS -> https://www.storyblok.com/docs/richtext-field
-import { renderRichText } from '@storyblok/js'
-const renderedRichText = renderRichText(blok.body)
-
 const props = defineProps<{
   blok: {
     type: Object
     required: true
   }
 }>()
+
+const renderedRichText = computed(() => renderRichText(props.blok.body))
 </script>
 
 <style lang="scss" scoped>

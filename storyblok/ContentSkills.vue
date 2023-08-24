@@ -1,13 +1,11 @@
 <template>
   <div v-editable="blok" class="skills flex">
     <h3>{{ blok.title }}</h3>
-    <div v-for="blok in blok.skill" :key="blok._uid" class="">
-      <StoryblokComponent
-        v-for="blok in blok.component"
-        :key="blok._uid"
-        :blok="blok"
-      />
-    </div>
+    <StoryblokComponent
+      v-for="childBlok in blok.skill"
+      :key="childBlok._uid"
+      :blok="childBlok"
+    />
   </div>
 </template>
 

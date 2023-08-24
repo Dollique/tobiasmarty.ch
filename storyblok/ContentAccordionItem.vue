@@ -1,8 +1,8 @@
 <template>
-  <section v-editable="blok" class="accordion-item">
+  <section v-editable="blok" class="accordion-item" ref="accordionItem">
     <h2 @click="slidetoggle">{{ blok.title }}</h2>
     <div class="accordion-item__content">
-      <rich-text-renderer v-if="blok.content" :document="blok.content" />
+      <div v-html="renderedRichText"></div>
     </div>
   </section>
 </template>
@@ -15,34 +15,44 @@ const props = defineProps<{
   }
 }>()
 
+const emit = defineEmits(['closeAll'])
+
+const renderedRichText = computed(() => renderRichText(props.blok.content))
+const accordionItem = ref(null)
+
 // https://stackoverflow.com/questions/44467909/animating-max-height-with-pure-js
 const slidetoggle = function () {
-  const item = this.$el
-  const el = this.$el.querySelector('.accordion-item__content')
-  const ch = el.clientHeight,
-    sh = el.scrollHeight,
-    isCollapsed = !ch,
-    noHeightSet = !el.style.height
+  const el = accordionItem.value.querySelector('.accordion-item__content')
+  const ch = el.clientHeight
+  const sh = el.scrollHeight
+  const isCollapsed = !ch
+  const noHeightSet = !el.style.height
 
   if (isCollapsed || noHeightSet) {
-    this.$parent.closeAll() // close all open items
+    emit('closeAll') // close all open items
 
     el.style.height = sh + 'px'
-    item.classList.add('active')
+    accordionItem.value.classList.add('active')
   } else {
     el.style.height = 0 + 'px'
-    item.classList.remove('active')
+    accordionItem.value.classList.remove('active')
   }
 
-  if (noHeightSet) return this.slidetoggle.call(this, false)
+  if (noHeightSet) return slidetoggle.call(accordionItem)
 }
+
 const closeItems = function () {
-  const item = this.$el
-  const el = this.$el.querySelector('.accordion-item__content')
+  console.log('CLOSE THIS')
+  const el = accordionItem.value.querySelector('.accordion-item__content')
 
   el.style.height = 0 + 'px'
-  item.classList.remove('active')
+  accordionItem.value.classList.remove('active')
 }
+
+defineExpose({
+  accordionItem,
+  closeItems,
+})
 </script>
 
 <style lang="scss" scoped>

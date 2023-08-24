@@ -1,12 +1,10 @@
 <template>
   <div v-editable="blok" class="grid-wrapper flex" :class="getClasses()">
-    <div v-for="blok in blok.columns" :key="blok._uid">
-      <StoryblokComponent
-        v-for="blok in blok.component"
-        :key="blok._uid"
-        :blok="blok"
-      />
-    </div>
+    <StoryblokComponent
+      v-for="childBlok in blok.columns"
+      :key="childBlok._uid"
+      :blok="childBlok"
+    />
   </div>
 </template>
 
@@ -19,15 +17,15 @@ const props = defineProps<{
 }>()
 
 const getClasses = function () {
-  const force_row = this.blok.force_row ? 'force_row' : ''
-  const add_gutter = this.blok.add_gutter ? ' add_gutter' : ''
-  const add_margin_bottom = this.blok.add_margin_bottom
+  const force_row = props.blok.force_row ? 'force_row' : ''
+  const add_gutter = props.blok.add_gutter ? ' add_gutter' : ''
+  const add_margin_bottom = props.blok.add_margin_bottom
     ? ' add_margin_bottom'
     : ''
-  const gap = this.blok.gap !== '' ? ' ' + this.blok.gap : ''
+  const gap = props.blok.gap !== '' ? ' ' + props.blok.gap : ''
 
-  const justify = this.blok.justify_content
-    ? ' justify_' + this.blok.justify_content
+  const justify = props.blok.justify_content
+    ? ' justify_' + props.blok.justify_content
     : ''
 
   return force_row + add_gutter + add_margin_bottom + gap + justify

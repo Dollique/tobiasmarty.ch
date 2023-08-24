@@ -1,5 +1,10 @@
 <template>
   <div
+    v-if="
+      typeof blok !== 'undefined' &&
+      typeof blok.image !== 'undefined' &&
+      typeof blok.image[0].component !== 'undefined'
+    "
     v-editable="blok"
     :class="`align-${blok.image[0].align} color-${blok.font_color}`"
     class="quote-wrapper"
@@ -10,20 +15,30 @@
     </blockquote>
 
     <StoryblokComponent
-      v-for="blok in blok.image[0].component"
-      :key="blok._uid"
-      :blok="blok.image[0]"
+      v-for="childBlok in blok.image"
+      :key="childBlok._uid"
+      :blok="childBlok"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+interface PropType {
+  image: {
+    align: string
+    component: any[]
+  }[]
+  author: string
+  quote: string
+  font_color: string
+}
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as () => PropType,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

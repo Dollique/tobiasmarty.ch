@@ -16,9 +16,9 @@
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
+    "nuxt-swiper": "^1.2.0",
     "sass": "^1.49.9",
     "sass-loader": "^10.2.1",
-    "swiper": "^9.3.2",
     "vue-waypoint": "^4.2.5"
   },
   "devDependencies": {
