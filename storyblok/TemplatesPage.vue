@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper" :class="routeClass">
-    <SiteHeader :blok="blok" :show-nav="false" />
+    <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
     <section v-editable="blok" class="page flex">
       <StoryblokComponent

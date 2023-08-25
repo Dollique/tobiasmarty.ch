@@ -42,7 +42,6 @@ const slidetoggle = function () {
 }
 
 const closeItems = function () {
-  console.log('CLOSE THIS')
   const el = accordionItem.value.querySelector('.accordion-item__content')
 
   el.style.height = 0 + 'px'

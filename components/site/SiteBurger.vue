@@ -1,24 +1,19 @@
 <template>
-  <div class="menu btn1" :class="{ open: navOpen }" @click="toggle(navOpen)">
+  <div
+    class="menu btn1"
+    :class="{ open: $navigationStore.navOpen }"
+    @click="toggle()"
+  >
     <div class="icon-left"></div>
     <div class="icon-right"></div>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 const { $navigationStore } = useNuxtApp() // get the store data
 
-export default {
-  computed: {
-    navOpen() {
-      return $navigationStore.navOpen
-    },
-  },
-  methods: {
-    ...mapMutations({
-      toggle: $navigationStore.toggle(),
-    }),
-  },
+const toggle = () => {
+  $navigationStore.toggle()
 }
 </script>
 

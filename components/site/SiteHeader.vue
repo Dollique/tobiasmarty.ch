@@ -16,15 +16,15 @@
           </template>
         </template>
 
-        <!--aside v-if="showNav" class="grid-2col__right">
-          <Burger />
-        </aside-->
+        <aside v-if="showNav" class="grid-2col__right">
+          <SiteBurger />
+        </aside>
 
         <Lain :mirror="true" class="line" />
       </div>
     </div>
 
-    <SiteNavigation :blok="blok" />
+    <SiteNavigation v-if="showNav" :blok="blok" />
   </header>
 </template>
 
@@ -40,7 +40,7 @@ defineProps({
   showNav: {
     type: Boolean as PropType<boolean>,
     required: false,
-    default: true,
+    default: false,
   },
 })
 </script>

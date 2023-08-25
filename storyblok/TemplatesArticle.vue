@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <SiteHeader :blok="blok" />
+    <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
     <main v-if="isClientRendered" v-editable="blok">
       <Waypoint :options="options" @change="onChange">

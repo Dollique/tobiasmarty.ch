@@ -21,18 +21,13 @@
         >{{ blok.title }}</span
       >
       <!-- block link (external) -->
-      <div
+      <StoryblokComponent
         v-else
         class="link__block"
         v-for="blok in blok.blocklink"
         :key="blok._uid"
-      >
-        <StoryblokComponent
-          v-for="blok in blok.component"
-          :key="blok._uid"
-          :blok="blok"
-        />
-      </div>
+        :blok="blok"
+      />
     </a>
   </div>
 </template>

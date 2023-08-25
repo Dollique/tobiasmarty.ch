@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
@@ -40,3 +38,9 @@ useHead({
   ],
 })
 </script>
+
+<style lang="scss">
+.some-pseudo-class-that-doesnt-exist {
+  // leave empty -> resets.scss doesn't work on html/body without this
+}
+</style>

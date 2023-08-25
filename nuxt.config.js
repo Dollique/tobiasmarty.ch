@@ -1,8 +1,5 @@
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  devtools: { enabled: false },
   vite: {
     css: {
       preprocessorOptions: {
@@ -13,7 +10,7 @@ export default defineNuxtConfig({
             @import "@/assets/scss/includes/mixins/mixins.scss";
             @import "@/assets/scss/includes/globals/fonts.scss";
             @import "@/assets/scss/includes/globals/global.scss";
-            @import "@/assets/scss/includes/globals/resets.scss";
+            @import "~/assets/scss/includes/globals/resets.scss";
             @import "@/assets/scss/includes/globals/transition.scss";
           `,
         },
@@ -38,37 +35,8 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@hypernym/nuxt-gsap',
   ],
-  build: {
-    standalone: true, // fix swiperJS 8 -> https://github.com/seosmmbusiness/NuxtJs-SwiperJs8
-  },
 
-  pageTransition: {
-    /* name: 'page',
-    mode: 'out-in',
-    css: false,
-
-    beforeEnter(el) {
-      this.$gsap.set(el, {
-        opacity: 0
-      })
-    },
-
-    enter(el, done) {
-      this.$gsap.to(el, {
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: done
-      })
-    },
-
-    leave(el, done) {
-      this.$gsap.to(el, {
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: done
-      })
-    } */
+  app: {
+    pageTransition: { name: 'pageTransition', mode: 'out-in' },
   },
 })

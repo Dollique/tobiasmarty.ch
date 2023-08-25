@@ -1,13 +1,17 @@
 <template>
-  <div v-editable="blok" class="portfolio-wrapper" v-on:click="toggleActive">
+  <div
+    ref="portfolio"
+    v-editable="blok"
+    class="portfolio-wrapper"
+    @click="toggleActive"
+  >
     <div class="portfolio__content">
-      <div class="portfolio__content_item">
-        <StoryblokComponent
-          v-for="childblok in blok.content"
-          :key="childblok._uid"
-          :blok="childblok"
-        />
-      </div>
+      <StoryblokComponent
+        v-for="childblok in blok.content"
+        :key="childblok._uid"
+        :blok="childblok"
+        class="portfolio__content_item"
+      />
     </div>
 
     <StoryblokComponent
@@ -26,10 +30,11 @@ const props = defineProps<{
   }
 }>()
 
+const portfolio = ref(null)
+
 const toggleActive = function (event) {
-  if (!this.isLink(event.target)) {
-    this.isActive = !this.isActive
-    this.$el.classList.toggle('active')
+  if (!isLink(event.target)) {
+    portfolio.value.classList.toggle('active')
   }
 }
 

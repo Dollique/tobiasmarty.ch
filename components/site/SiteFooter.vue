@@ -147,7 +147,7 @@ footer {
   }
 
   a {
-    padding-right: 15px;
+    padding-right: 20px;
 
     &:last-child {
       padding-right: 0;

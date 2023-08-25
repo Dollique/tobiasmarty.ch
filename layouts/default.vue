@@ -1,6 +1,6 @@
 <template>
   <div class="page_wrapper">
-    <slot />
+    <NuxtPage />
     <canvas class="glitch"></canvas>
   </div>
 </template>
@@ -105,6 +105,24 @@ onMounted(() => {
   })
 })
 </script>
+
+<style lang="scss">
+/* pageTransition */
+
+.pageTransition-enter-active,
+.pageTransition-leave-active {
+  transition: opacity 0.55s;
+}
+
+.pageTransition-enter-from,
+.pageTransition-leave-to {
+  opacity: 0;
+
+  & + .glitch {
+    display: block !important;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .page_wrapper {

@@ -4,7 +4,9 @@
       class="swiper-wrapper"
       :modules="swiperOptions.modules"
       :autoplay="swiperOptions.autoplay"
+      :loop="swiperOptions.loop"
       :slides-per-view="swiperOptions.slidesPerView"
+      :pagination="swiperOptions.pagination"
       :auto-height="swiperOptions.autoHeight"
       :centered-slides="swiperOptions.centeredSlides"
       :space-between="swiperOptions.spaceBetween"
@@ -61,20 +63,22 @@ const swiperSkillsOptions = {
 }
 
 const swiperImgOptions = {
-  //modules: [Pagination, Autoplay],
+  modules: [SwiperAutoplay, SwiperPagination],
 
-  //loop: true,
+  loop: true,
   slidesPerView: 1,
   centeredSlides: true,
   spaceBetween: 10,
   autoHeight: true,
+
+  pagination: {},
 
   autoplay: {
     delay: 4000,
     disableOnInteraction: false,
   },
 
-  /*breakpoints: {
+  /* breakpoints: {
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
@@ -87,7 +91,7 @@ const swiperImgOptions = {
             slidesPerView: 5,
             spaceBetween: 50,
           },
-        },*/
+        }, */
 }
 
 let swiperOptions
@@ -189,15 +193,15 @@ if (props.blok.type === 'skillbox') {
   }
 }
 
-.swiper-pagination {
-  background: transparent;
+::v-deep {
+  .swiper-pagination {
+    background: transparent;
 
-  display: flex;
-  justify-content: center;
-  padding: 0 10%;
-  bottom: 27px;
+    display: flex;
+    justify-content: center;
+    padding: 0 10%;
+    bottom: 17px;
 
-  ::v-deep {
     .swiper-pagination-bullet {
       background: $color-content;
     }
