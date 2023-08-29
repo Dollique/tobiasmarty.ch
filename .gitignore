@@ -95,3 +95,6 @@ sw.*
 # Vim swap files
 *.swp
 
+# local ssl certificates
+localhost.pem
+localhost-key.pem
