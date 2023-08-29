@@ -3,13 +3,13 @@
     <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
     <main v-if="isClientRendered" v-editable="blok">
-      <Waypoint :options="options" @change="onChange">
-        <StoryblokComponent
-          v-for="childblok in blok.body"
-          :key="childblok._uid"
-          :blok="childblok"
-          class="waypoint"
-        />
+      <Waypoint
+        v-for="childblok in blok.body"
+        :key="childblok._uid"
+        :options="options"
+        @change="onChange"
+      >
+        <StoryblokComponent :blok="childblok" />
       </Waypoint>
     </main>
 
@@ -19,6 +19,8 @@
 </template>
 
 <script setup lang="ts">
+import { Waypoint } from 'vue-waypoint'
+
 defineProps<{
   blok: {
     type: Object
@@ -29,11 +31,7 @@ defineProps<{
 defineComponent({
   name: 'TemplatesArticle',
   components: {
-    Waypoint: () => {
-      if (process.client) {
-        return import('vue-waypoint')
-      }
-    },
+    Waypoint,
   },
 })
 
@@ -49,11 +47,15 @@ const options: IntersectionObserverInit = {
   threshold: [0, 0.75], // script is executed at 0% and 75% visibility
 }
 
-const onChange = (waypointState) => {
+const onChange = (waypointState: WaypointState) => {
   const direction = waypointState.direction
   const going = waypointState.going
   const el = waypointState.element
 
+  console.log('direction: ' + direction)
+  console.log('going', going)
+
+  /*
   if (
     // ignore horizontal changes (including fade-in animation)
     direction === 'direction-left' ||
@@ -87,6 +89,7 @@ const onChange = (waypointState) => {
       }
     }
   }
+  */
 }
 </script>
 

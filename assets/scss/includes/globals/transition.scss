@@ -1,11 +1,14 @@
 // content fade-in (using vue-waypoint)
-/* TODO: re-enable when Wayport is fixed
 .waypoint {
   opacity: 0;
   transform: translate3d(-200px, 0, 0);
+  transition:
+    transform 1s,
+    opacity 1.5s;
 }
 
-.waypoint-active {
+.going-in {
+  /* active */
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
@@ -15,15 +18,8 @@
     transform: translate3d(-400px, 0, 0);
   }
 
-  .waypoint-active {
+  .going-in {
+    /* active */
     transform: translate3d(0, 0, 0);
   }
 }
-
-.waypoint,
-.waypoint-active {
-  transition:
-    transform 1s,
-    opacity 1.5s;
-}
-*/
