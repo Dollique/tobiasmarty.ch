@@ -50,46 +50,9 @@ const options: IntersectionObserverInit = {
 const onChange = (waypointState: WaypointState) => {
   const direction = waypointState.direction
   const going = waypointState.going
-  const el = waypointState.element
 
-  console.log('direction: ' + direction)
-  console.log('going', going)
-
-  /*
-  if (
-    // ignore horizontal changes (including fade-in animation)
-    direction === 'direction-left' ||
-    direction === 'direction-right'
-  ) {
-    return
-  }
-
-  if (
-    // initial load
-    typeof direction === 'undefined' &&
-    going === 'going-in'
-  ) {
-    el.classList.add('waypoint-active')
-  } else {
-    // behavior when scrolling
-
-    // scrolling up
-    if (direction === 'direction-bottom') {
-      if (going === 'going-out') {
-        el.classList.remove('waypoint-active')
-      } else {
-        el.classList.add('waypoint-active')
-      }
-    }
-
-    // scrolling down
-    if (going === 'going-in') {
-      if (direction === 'direction-top') {
-        el.classList.add('waypoint-active')
-      }
-    }
-  }
-  */
+  // console.log('direction: ' + direction)
+  // console.log('going', going)
 }
 </script>
 
