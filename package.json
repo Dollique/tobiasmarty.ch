@@ -19,7 +19,7 @@
     "nuxt-swiper": "^1.2.0",
     "sass": "^1.49.9",
     "sass-loader": "^10.2.1",
-    "vue-waypoint": "^4.2.5"
+    "vue-waypoint": "^4.3.0"
   },
   "devDependencies": {
     "@hypernym/nuxt-gsap": "^2.2.2",
