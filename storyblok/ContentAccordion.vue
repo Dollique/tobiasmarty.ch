@@ -13,17 +13,19 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  blok: {
-    type: Object
-    required: true
-  }
-}>()
+import type { ContentAccordionStoryblok } from '@/types/component-types-sb'
 
-const childAccordion = ref([])
+defineProps({
+  blok: {
+    type: Object as PropType<ContentAccordionStoryblok>,
+    required: true,
+  },
+})
+
+const childAccordion = ref([{ closeItem() {} }]) // set closeItem() as default to TypeScript prevent error
 
 const onCloseAll = function () {
-  for (let [index, child] of childAccordion.value.entries()) {
+  for (const [index] of childAccordion.value.entries()) {
     // check if closeItem function exists
     if (typeof childAccordion.value[index].closeItem === 'function') {
       childAccordion.value[index].closeItem()

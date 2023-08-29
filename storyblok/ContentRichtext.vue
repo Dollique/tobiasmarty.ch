@@ -1,16 +1,19 @@
 <template>
   <div v-editable="blok" class="richtext">
+    <!-- eslint-disable-next-line vue/no-v-html -->
     <div v-html="renderedRichText"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentRichtextStoryblok } from '@/types/component-types-sb'
+
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentRichtextStoryblok>,
+    required: true,
+  },
+})
 
 const renderedRichText = computed(() => renderRichText(props.blok.body))
 </script>
@@ -19,28 +22,26 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
 @import 'assets/scss/imports/headers.scss';
 
 .richtext {
-  ::v-deep {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      @include addGutter;
-    }
+  :deep(h1),
+  :deep(h2),
+  :deep(h3),
+  :deep(h4),
+  :deep(h5),
+  :deep(h6) {
+    @include addGutter;
+  }
 
-    p,
-    h1 {
-      padding-bottom: $gap;
-    }
+  :deep(p),
+  :deep(h1) {
+    padding-bottom: $gap;
+  }
 
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      padding-bottom: calc($gap / 2);
-    }
+  :deep(h2),
+  :deep(h3),
+  :deep(h4),
+  :deep(h5),
+  :deep(h6) {
+    padding-bottom: calc($gap / 2);
   }
 }
 </style>

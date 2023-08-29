@@ -1,51 +1,62 @@
 <template>
-  <section v-editable="blok" class="accordion-item" ref="accordionItem">
+  <section ref="accordionItem" v-editable="blok" class="accordion-item">
     <h2 @click="slidetoggle">{{ blok.title }}</h2>
     <div class="accordion-item__content">
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="renderedRichText"></div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentAccordionItemStoryblok } from '@/types/component-types-sb'
+
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentAccordionItemStoryblok>,
+    required: true,
+  },
+})
 
 const emit = defineEmits(['closeAll'])
 
 const renderedRichText = computed(() => renderRichText(props.blok.content))
-const accordionItem = ref(null)
+const accordionItem: { value: HTMLElement | null } = ref(null)
 
 // https://stackoverflow.com/questions/44467909/animating-max-height-with-pure-js
-const slidetoggle = function () {
-  const el = accordionItem.value.querySelector('.accordion-item__content')
-  const ch = el.clientHeight
-  const sh = el.scrollHeight
-  const isCollapsed = !ch
-  const noHeightSet = !el.style.height
+const slidetoggle = function (): void {
+  if (accordionItem.value) {
+    const el = accordionItem.value.querySelector(
+      '.accordion-item__content',
+    ) as HTMLElement
+    const ch = el.clientHeight
+    const sh = el.scrollHeight
+    const isCollapsed = !ch
+    const noHeightSet = !el.style.height
 
-  if (isCollapsed || noHeightSet) {
-    emit('closeAll') // close all open items
+    if (isCollapsed || noHeightSet) {
+      emit('closeAll') // close all open items
 
-    el.style.height = sh + 'px'
-    accordionItem.value.classList.add('active')
-  } else {
-    el.style.height = 0 + 'px'
-    accordionItem.value.classList.remove('active')
+      el.style.height = sh + 'px'
+      accordionItem.value.classList.add('active')
+    } else {
+      el.style.height = 0 + 'px'
+      accordionItem.value.classList.remove('active')
+    }
+
+    if (noHeightSet) return slidetoggle.call(accordionItem)
   }
-
-  if (noHeightSet) return slidetoggle.call(accordionItem)
 }
 
 const closeItem = function () {
-  const el = accordionItem.value.querySelector('.accordion-item__content')
+  if (accordionItem.value) {
+    const el = accordionItem.value.querySelector(
+      '.accordion-item__content',
+    ) as HTMLElement
 
-  el.style.height = 0 + 'px'
-  accordionItem.value.classList.remove('active')
+    el.style.height = 0 + 'px'
+    accordionItem.value.classList.remove('active')
+  }
 }
 
 defineExpose({
@@ -117,16 +128,14 @@ h2 {
 .accordion-item__content {
   overflow: hidden;
 
-  ::v-deep {
-    p {
-      padding-bottom: 3px;
-    }
+  :deep(p) {
+    padding-bottom: 3px;
+  }
 
-    ul {
-      li {
-        p {
-          margin-left: 0;
-        }
+  :deep(ul) {
+    li {
+      p {
+        margin-left: 0;
       }
     }
   }

@@ -109,7 +109,7 @@ const removeListeners = function () {
 </script>
 
 <style lang="scss" scoped>
-nav ::v-deep {
+nav > div {
   // grid-row: 2;
   // grid-column: 1 / span 2;
   align-self: flex-start;
@@ -123,7 +123,7 @@ nav ::v-deep {
     margin-top: 1.5rem;
   }
 
-  a {
+  :deep(a) {
     display: block;
     border-top: 1px $color-content solid;
     @include fontSize(1rem, 2.5vw);
@@ -137,7 +137,7 @@ nav ::v-deep {
     }
   }
 
-  ul {
+  :deep(ul) {
     list-style: none;
     margin: 0 $gutter;
     padding: 0;
@@ -164,9 +164,6 @@ nav ::v-deep {
         border-bottom: none;
       }
     }
-  }
-
-  li {
   }
 }
 </style>

@@ -39,12 +39,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+type BlokProp = { [key: string]: any }
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<BlokProp>,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

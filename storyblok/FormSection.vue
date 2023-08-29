@@ -1,13 +1,11 @@
 <template>
   <form class="form-section" @submit.prevent="handleFormSubmit">
-    <fieldset v-for="(blok, index) in blok.fields" :key="blok._uid">
-      <!--StoryblokComponent v-for="blok in blok.component" :key="blok._uid" :blok="blok" :inputs.sync="inputs[index]" v-model="inputs" /-->
+    <fieldset v-for="(blokField, index) in blok.fields" :key="blokField._uid">
       <StoryblokComponent
-        v-for="blok in blok.component"
-        :key="blok._uid"
-        :blok="blok"
-        :inputs.sync="inputs2[index]"
+        v-for="blokChild in blokField.component"
+        :key="blokChild._uid"
         v-model="inputs[index]"
+        :blok="blokChild"
       />
     </fieldset>
 
@@ -19,6 +17,9 @@
 
 <script>
 const { $formStore } = useNuxtApp() // get the store data
+
+// TODO: remove eslint disable when done
+/* eslint-disable no-console */
 
 export default {
   props: {
@@ -33,19 +34,22 @@ export default {
       inputs2: [],
     }
   },
+  mounted() {
+    console.log('MOUNTED', this.inputs)
+  },
   methods: {
     handleFormSubmit() {
-      var formApiEndpoint = 'http://geyst.appengine.flow.ch:8080'
+      const formApiEndpoint = 'http://geyst.appengine.flow.ch:8080'
 
       console.log('test', this.inputs)
       console.log('test 2', this.inputs2)
       console.log('test STORE', $formStore.formData)
 
-      var formRequest = new Request(formApiEndpoint, {
+      const formRequest = new Request(formApiEndpoint, {
         method: 'POST',
         body: JSON.stringify({
-          name: this.inputs['firstname'],
-          message: this.inputs['mail'],
+          name: this.inputs.firstname,
+          message: this.inputs.mail,
         }),
       })
 
@@ -59,6 +63,8 @@ export default {
           }
         })
         .then(function (response) {
+          console.log('it worked', response)
+
           successEl.style.display = 'block'
           buttonEl.style.display = 'block'
           sendingEl.style.display = 'none'
@@ -73,8 +79,6 @@ export default {
         })
     },
   },
-  mounted() {
-    console.log('MOUNTED', this.inputs)
-  },
 }
+/* eslint-enable no-console */
 </script>

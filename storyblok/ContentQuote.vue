@@ -23,19 +23,11 @@
 </template>
 
 <script setup lang="ts">
-interface PropType {
-  image: {
-    align: string
-    component: any[]
-  }[]
-  author: string
-  quote: string
-  font_color: string
-}
+import type { ContentQuoteStoryblok } from '@/types/component-types-sb'
 
 defineProps({
   blok: {
-    type: Object as () => PropType,
+    type: Object as PropType<ContentQuoteStoryblok>,
     required: true,
   },
 })

@@ -6,21 +6,12 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+import type { ContentSkillStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object,
-    default() {
-      return {}
-    },
-    required: false,
-  },
-  // when the component is used in rich-text I need the body property
-  body: {
-    type: Object,
-    default() {
-      return {}
-    },
-    required: false,
+    type: Object as PropType<ContentSkillStoryblok>,
+    required: true,
   },
 })
 </script>

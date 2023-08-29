@@ -1,29 +1,37 @@
 <template>
-  <h2 class="button" v-editable="blok" :class="getClasses()">
-    <a v-if="blok.href.filename != ''" class="btn" :href="blok.href.filename">{{
-      blok.name
-    }}</a>
-    <nuxt-link v-else class="btn" :to="blok.link['cached_url']">{{
-      blok.name
-    }}</nuxt-link>
+  <h2 v-editable="blok" class="button" :class="getClasses()">
+    <a
+      v-if="blok.href && blok.href.filename != ''"
+      class="btn"
+      :href="blok.href.filename"
+      >{{ blok.name }}</a
+    >
+    <nuxt-link
+      v-else-if="blok.link"
+      class="btn"
+      :to="blok.link['cached_url']"
+      >{{ blok.name }}</nuxt-link
+    >
   </h2>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentButtonStoryblok } from '@/types/component-types-sb'
+
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentButtonStoryblok>,
+    required: true,
+  },
+})
 
 const getClasses = function () {
-  const add_gutter = props.blok.add_gutter ? ' add_gutter' : ''
-  const add_margin_bottom = props.blok.add_margin_bottom
+  const addGutter = props.blok.add_gutter ? ' add_gutter' : ''
+  const addMarginBottom = props.blok.add_margin_bottom
     ? ' add_margin_bottom'
     : ''
 
-  return add_gutter + add_margin_bottom
+  return addGutter + addMarginBottom
 }
 </script>
 

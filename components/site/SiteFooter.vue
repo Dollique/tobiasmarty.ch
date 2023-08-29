@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <Lain />
+    <HorizontalLine />
 
     <div class="footer__wrapper">
       <div class="left">

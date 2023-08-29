@@ -1,10 +1,10 @@
 <template>
   <div v-editable="blok" class="slider-wrapper">
-    <template v-for="(blok, index) in blok.columns">
+    <template v-for="(blokChild, index) in blok.columns">
       <StoryblokComponent
-        v-for="blok in blok.component"
-        :key="blok._uid"
-        :blok="blok"
+        v-for="blokItem in blokChild.component"
+        :key="blokItem._uid"
+        :blok="blokItem"
         class="slider-item"
         :class="[`slider-index--${index}`]"
       />
@@ -13,26 +13,37 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentSlidertextStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentSlidertextStoryblok>,
+    required: true,
+  },
+})
 
 onMounted(() => {
   boxRotation()
 })
 
 const boxRotation = function () {
-  const gsap = this.$gsap.timeline({ repeat: -1, repeatDelay: 1 })
+  const instance = getCurrentInstance()
 
-  gsap.to('.slider-index--0', { autoAlpha: 1, duration: 1 })
-  gsap.to('.slider-index--0', { autoAlpha: 0, duration: 1, delay: 2 })
-  gsap.to('.slider-index--1', { autoAlpha: 1, duration: 1 })
-  gsap.to('.slider-index--1', { autoAlpha: 0, duration: 1, delay: 2 })
-  gsap.to('.slider-index--2', { autoAlpha: 1, duration: 1 })
-  gsap.to('.slider-index--2', { autoAlpha: 0, duration: 1, delay: 2 })
+  if (instance) {
+    // TODO: Needs Testing!
+    // instance.appContext.config.globalProperties -> this was the idea of Phind
+    const gsap = instance.appContext.config.globalProperties.$gsap.timeline({
+      repeat: -1,
+      repeatDelay: 1,
+    })
+
+    gsap.to('.slider-index--0', { autoAlpha: 1, duration: 1 })
+    gsap.to('.slider-index--0', { autoAlpha: 0, duration: 1, delay: 2 })
+    gsap.to('.slider-index--1', { autoAlpha: 1, duration: 1 })
+    gsap.to('.slider-index--1', { autoAlpha: 0, duration: 1, delay: 2 })
+    gsap.to('.slider-index--2', { autoAlpha: 1, duration: 1 })
+    gsap.to('.slider-index--2', { autoAlpha: 0, duration: 1, delay: 2 })
+  }
 }
 </script>
 

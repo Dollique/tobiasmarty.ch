@@ -20,7 +20,7 @@
           <SiteBurger />
         </aside>
 
-        <Lain :mirror="true" class="line" />
+        <HorizontalLine :mirror="true" class="line" />
       </div>
     </div>
 

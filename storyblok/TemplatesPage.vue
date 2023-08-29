@@ -4,9 +4,9 @@
 
     <section v-editable="blok" class="page flex">
       <StoryblokComponent
-        v-for="blok in blok.body"
-        :key="blok._uid"
-        :blok="blok"
+        v-for="blokChild in blok.body"
+        :key="blokChild._uid"
+        :blok="blokChild"
       />
     </section>
 
@@ -15,12 +15,14 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import type { TemplatesPageStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<TemplatesPageStoryblok>,
+    required: true,
+  },
+})
 
 const getRouteClass = useRoute()
 let routeClass = 'route__'
@@ -45,11 +47,11 @@ if (typeof getRouteClass.params.slug !== 'undefined') {
       max-content
     );
   align-items: flex-start;
+}
 
-  &::v-deep {
-    p {
-      @include addGutter;
-    }
+:deep(.main-wrapper) {
+  p {
+    @include addGutter;
   }
 }
 
@@ -86,7 +88,7 @@ if (typeof getRouteClass.params.slug !== 'undefined') {
 
 // GRID component
 
-.grid-wrapper::v-deep {
+:deep(.grid-wrapper) {
   margin-top: 20px;
   align-items: center;
 

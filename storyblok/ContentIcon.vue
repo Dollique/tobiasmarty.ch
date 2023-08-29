@@ -3,12 +3,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentIconStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentIconStoryblok>,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

@@ -9,17 +9,19 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentGridStoryblok } from '@/types/component-types-sb'
+
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentGridStoryblok>,
+    required: true,
+  },
+})
 
 const getClasses = function () {
-  const force_row = props.blok.force_row ? 'force_row' : ''
-  const add_gutter = props.blok.add_gutter ? ' add_gutter' : ''
-  const add_margin_bottom = props.blok.add_margin_bottom
+  const forceRow = props.blok.force_row ? 'force_row' : ''
+  const addGutter = props.blok.add_gutter ? ' add_gutter' : ''
+  const addMarginBottom = props.blok.add_margin_bottom
     ? ' add_margin_bottom'
     : ''
   const gap = props.blok.gap !== '' ? ' ' + props.blok.gap : ''
@@ -28,7 +30,7 @@ const getClasses = function () {
     ? ' justify_' + props.blok.justify_content
     : ''
 
-  return force_row + add_gutter + add_margin_bottom + gap + justify
+  return forceRow + addGutter + addMarginBottom + gap + justify
 }
 </script>
 

@@ -10,6 +10,7 @@
               `"
     />
     <source
+      v-if="blok.src"
       v-editable="blok"
       media="(min-width: 800px)"
       :src="blok.src.filename"
@@ -20,6 +21,7 @@
     />
     <!-- Fallback to mobile -->
     <img
+      v-if="blok.mobile"
       :src="blok.mobile.filename"
       :srcset="`${resize(blok.mobile.filename, '480x0')} 480w,
               ${resize(blok.mobile.filename, '800x0')} 800w,
@@ -30,18 +32,20 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  blok: {
-    type: Object
-    required: true
-  }
-}>()
+import type { ContentImageStoryblok } from '@/types/component-types-sb'
 
-const resize = function (image, option) {
+defineProps({
+  blok: {
+    type: Object as PropType<ContentImageStoryblok>,
+    required: true,
+  },
+})
+
+const resize = function (image: string, option: string) {
   if (!image) return
 
-  let imageService = '//a.storyblok.com'
-  let path = image.replace('https://a.storyblok.com', '') // -> /f/148502/718x112/769dd796c1/mind-control1_mobile.jpg
+  const imageService = '//a.storyblok.com'
+  const path = image.replace('https://a.storyblok.com', '') // -> /f/148502/718x112/769dd796c1/mind-control1_mobile.jpg
 
   return imageService + path + '/m/' + option // -> //a.storyblok.com//400x100/f/148502/718x112/769dd796c1/mind-control1_mobile.jpg/m
 }

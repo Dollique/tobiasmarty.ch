@@ -10,12 +10,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentSkillsStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentSkillsStoryblok>,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

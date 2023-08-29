@@ -14,9 +14,9 @@
       :breakpoints="swiperOptions.breakpoints"
     >
       <SwiperSlide
-        class="swiper-slide"
         v-for="childBlok in blok.item"
         :key="childBlok._uid"
+        class="swiper-slide"
       >
         <StoryblokComponent :blok="childBlok" />
       </SwiperSlide>
@@ -25,38 +25,41 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentSwiperStoryblok } from '@/types/component-types-sb'
+import type { SwiperOptions } from '@/node_modules/swiper/types/swiper-options'
+
+const props = defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentSwiperStoryblok>,
+    required: true,
+  },
+})
 
 const swiperSkillsOptions = {
   pagination: {
     clickable: true,
   },
 
-  //loop: true,
-  slidesPerView: 'auto',
+  // loop: true,
+  slidesPerView: 'auto' as const,
   centeredSlides: true,
   spaceBetween: 10,
   slideToClickedSlide: true,
 
   breakpoints: {
     640: {
-      //slidesPerView: 2,
-      //spaceBetween: 20,
+      // slidesPerView: 2,
+      // spaceBetween: 20,
       spaceBetween: 20,
     },
     768: {
-      //slidesPerView: 4,
-      //spaceBetween: 40,
+      // slidesPerView: 4,
+      // spaceBetween: 40,
       spaceBetween: 30,
     },
     1024: {
-      //slidesPerView: 5,
-      //spaceBetween: 50,
+      // slidesPerView: 5,
+      // spaceBetween: 50,
       spaceBetween: 40,
     },
   },
@@ -94,7 +97,7 @@ const swiperImgOptions = {
         }, */
 }
 
-let swiperOptions
+let swiperOptions: SwiperOptions
 if (props.blok.type === 'skillbox') {
   swiperOptions = swiperSkillsOptions
 } else if (props.blok.type === 'img') {
@@ -160,24 +163,22 @@ if (props.blok.type === 'skillbox') {
   padding-bottom: 10px;
 
   .swiper-slide {
-    ::v-deep {
-      picture {
-        max-width: inherit;
-        //max-height: 385px;
-        //display: flex;
-        //flex-direction: column;
+    :deep(picture) {
+      max-width: inherit;
+      //max-height: 385px;
+      //display: flex;
+      //flex-direction: column;
 
-        @include for-tablet-portrait-up {
-          //max-height: 850px;
-          margin-left: 25vw;
-          margin-right: 25vw;
-        }
+      @include for-tablet-portrait-up {
+        //max-height: 850px;
+        margin-left: 25vw;
+        margin-right: 25vw;
+      }
 
-        img {
-          //height: 100%;
-          object-fit: contain;
-          max-height: 80vh;
-        }
+      img {
+        //height: 100%;
+        object-fit: contain;
+        max-height: 80vh;
       }
     }
   }
@@ -193,18 +194,16 @@ if (props.blok.type === 'skillbox') {
   }
 }
 
-::v-deep {
-  .swiper-pagination {
-    background: transparent;
+:deep(.swiper-pagination) {
+  background: transparent;
 
-    display: flex;
-    justify-content: center;
-    padding: 0 10%;
-    bottom: 17px;
+  display: flex;
+  justify-content: center;
+  padding: 0 10%;
+  bottom: 17px;
 
-    .swiper-pagination-bullet {
-      background: $color-content;
-    }
+  .swiper-pagination-bullet {
+    background: $color-content;
   }
 }
 </style>

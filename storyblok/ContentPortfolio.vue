@@ -23,22 +23,25 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+import type { ContentPortfolioStoryblok } from '@/types/component-types-sb'
+
+defineProps({
   blok: {
-    type: Object
-    required: true
-  }
-}>()
+    type: Object as PropType<ContentPortfolioStoryblok>,
+    required: true,
+  },
+})
 
-const portfolio = ref(null)
+const portfolio: { value: HTMLElement | null } = ref(null)
 
-const toggleActive = function (event) {
-  if (!isLink(event.target)) {
+const toggleActive = function (event: MouseEvent): void {
+  const targetElement = event.target as HTMLElement | null
+  if (!isLink(targetElement) && portfolio.value) {
     portfolio.value.classList.toggle('active')
   }
 }
 
-const isLink = function (element) {
+const isLink = function (element: HTMLElement | null): Boolean {
   // checks if element either is a link or has link parents
   while (element) {
     if (element.tagName === 'A') return true
@@ -93,10 +96,8 @@ const isLink = function (element) {
     z-index: 1;
   }
 
-  ::v-deep {
-    picture {
-      margin-bottom: 0;
-    }
+  :deep(picture) {
+    margin-bottom: 0;
   }
 }
 

@@ -2,10 +2,10 @@
   <div>
     <label :for="`${blok.name}`">{{ blok.name }}</label>
     <input
-      :type="`${blok.type}`"
       :id="`${blok.name}`"
-      :name="`${blok.name}`"
       v-model="inputVal"
+      :type="`${blok.type}`"
+      :name="`${blok.name}`"
     />
   </div>
 </template>
@@ -19,7 +19,11 @@ export default {
       type: Object,
       required: true,
     },
-    value: '',
+    value: {
+      type: String,
+      required: false,
+      default: '',
+    },
   },
   data() {
     return {
@@ -30,7 +34,7 @@ export default {
     inputVal: {
       get() {
         return this.value
-        //return [this.value,this.blok.name];
+        // return [this.value,this.blok.name];
       },
       set(val) {
         this.$emit('input', val)
