@@ -51,7 +51,18 @@ $ local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localho
 
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## generate Stroyblok Types
+
+Find the [documentation here](https://www.storyblok.com/faq/how-can-i-utilize-typescript-in-my-storyblok-project).
+
+Everytime you change the component schema in Storyblok you need to run the following command to update the types:
+
+```bash
+$ storyblok pull-components --space SPACE_ID
+$ yarn generate-sb-types
+```
+
+remember to remove the json file after you are done.
 
 ## Special Directories
 
