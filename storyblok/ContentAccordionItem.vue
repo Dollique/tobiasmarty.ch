@@ -41,7 +41,7 @@ const slidetoggle = function () {
   if (noHeightSet) return slidetoggle.call(accordionItem)
 }
 
-const closeItems = function () {
+const closeItem = function () {
   const el = accordionItem.value.querySelector('.accordion-item__content')
 
   el.style.height = 0 + 'px'
@@ -50,7 +50,7 @@ const closeItems = function () {
 
 defineExpose({
   accordionItem,
-  closeItems,
+  closeItem,
 })
 </script>
 
