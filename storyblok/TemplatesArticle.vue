@@ -2,6 +2,7 @@
   <div class="main-wrapper">
     <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
+    <PageLoader />
     <main v-if="isClientRendered" v-editable="blok">
       <Waypoint
         v-for="childblok in blok.body"
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import { Waypoint } from 'vue-waypoint'
 import type { TemplatesArticleStoryblok } from '@/types/component-types-sb'
+import PageLoader from '~/components/site/PageLoader.vue'
 
 defineProps({
   blok: {

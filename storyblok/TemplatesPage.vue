@@ -2,7 +2,8 @@
   <div class="main-wrapper" :class="routeClass">
     <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
-    <section v-editable="blok" class="page flex">
+    <PageLoader />
+    <section v-if="isClientRendered" v-editable="blok" class="page flex">
       <StoryblokComponent
         v-for="blokChild in blok.body"
         :key="blokChild._uid"
@@ -16,12 +17,19 @@
 
 <script setup lang="ts">
 import type { TemplatesPageStoryblok } from '@/types/component-types-sb'
+import PageLoader from '~/components/site/PageLoader.vue'
 
 defineProps({
   blok: {
     type: Object as PropType<TemplatesPageStoryblok>,
     required: true,
   },
+})
+
+const isClientRendered = ref(false)
+
+onMounted(() => {
+  isClientRendered.value = true
 })
 
 const getRouteClass = useRoute()
@@ -49,7 +57,7 @@ if (typeof getRouteClass.params.slug !== 'undefined') {
   align-items: flex-start;
 }
 
-:deep(.main-wrapper) {
+:deep(.page) {
   p {
     @include addGutter;
   }
