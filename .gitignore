@@ -58,6 +58,8 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.*
+!.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -66,7 +68,10 @@ typings/
 .next
 
 # nuxt.js build output
+.output
+.data
 .nuxt
+.nitro
 
 # Nuxt generate
 dist
@@ -90,3 +95,6 @@ sw.*
 # Vim swap files
 *.swp
 
+# local ssl certificates
+localhost.pem
+localhost-key.pem

@@ -1,0 +1,25 @@
+// content fade-in (using vue-waypoint)
+.waypoint {
+  opacity: 0;
+  transform: translate3d(-200px, 0, 0);
+  transition:
+    transform 1s,
+    opacity 1.5s;
+}
+
+.going-in {
+  /* active */
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@include for-tablet-portrait-up {
+  .waypoint {
+    transform: translate3d(-400px, 0, 0);
+  }
+
+  .going-in {
+    /* active */
+    transform: translate3d(0, 0, 0);
+  }
+}

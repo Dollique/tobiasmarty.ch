@@ -1,0 +1,61 @@
+html,
+body,
+#__nuxt,
+#__nuxt > section {
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: $color-background;
+}
+
+* {
+  color: $color-content;
+  @include fontSize(0.9rem, 0.4vw, 2.2rem);
+  @include fontFamily('Sarabun');
+  font-weight: 400;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  &::selection {
+    background-color: $color-content;
+    color: $color-content-neg;
+  }
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+html,
+body {
+  font-size: 100%; // set base-size
+
+  &.navOpen {
+    overflow-y: hidden;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+ul {
+  margin-left: 31px;
+
+  li {
+    p {
+      margin-left: 0;
+    }
+  }
+}

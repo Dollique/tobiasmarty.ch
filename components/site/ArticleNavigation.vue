@@ -38,15 +38,15 @@
   </nav>
 </template>
 
-<script>
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
+<script setup lang="ts">
+type BlokProp = { [key: string]: any }
+
+defineProps({
+  blok: {
+    type: Object as PropType<BlokProp>,
+    required: true,
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>
