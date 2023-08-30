@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable-next-line vue/no-v-html -->
   <div v-editable="blok" class="icon" v-html="blok.icon_svg_code"></div>
 </template>
 

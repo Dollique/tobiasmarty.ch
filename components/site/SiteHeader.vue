@@ -29,13 +29,14 @@
 </template>
 
 <script setup lang="ts">
+import type { GlobalStoryblok } from '@/types/component-types-sb'
+
 const { $navigationStore } = useNuxtApp() // get the store data
 
 defineProps({
   blok: {
-    type: Object,
-    required: false,
-    default: () => undefined,
+    type: Object as PropType<GlobalStoryblok>,
+    required: true,
   },
   showNav: {
     type: Boolean as PropType<boolean>,

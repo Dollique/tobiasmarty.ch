@@ -13,7 +13,8 @@ const props = defineProps({
 
 onMounted(() => {
   if (props && props.blok && props.blok.mirror) {
-    document.querySelector('hr').classList.add('mirror')
+    const element = document.querySelector('hr') as HTMLElement
+    element.classList.add('mirror')
   }
 })
 </script>

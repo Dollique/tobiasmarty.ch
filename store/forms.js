@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+/* eslint-disable no-console */
+
 export const useFormStore = defineStore('form', {
   state: () => ({
     formData: {},
@@ -14,3 +16,5 @@ export const useFormStore = defineStore('form', {
     },
   },
 })
+
+/* eslint-enable no-console */

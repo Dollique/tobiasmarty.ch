@@ -1,28 +1,31 @@
 <template>
   <nav :class="{ hidden: !$navigationStore.navOpen }">
     <template v-if="blok">
-      <template v-for="myblok in blok.globals">
+      <template v-for="blokChild in blok.globals">
+        <!-- eslint-disable vue/no-v-html -->
         <div
-          v-if="myblok.component === 'global_reference'"
-          :key="myblok._uid"
-          v-html="getNavigation(myblok.reference.content.Header_Navigation)"
+          v-if="blokChild.component === 'global_reference'"
+          :key="blokChild._uid"
+          v-html="getNavigation(blokChild.reference.content.Header_Navigation)"
         ></div>
+        <!--eslint-enable-->
       </template>
     </template>
   </nav>
 </template>
 
 <script setup lang="ts">
+import type { GlobalStoryblok } from '@/types/component-types-sb'
+
 const { $navigationStore } = useNuxtApp() // get the store data
 const router = useRouter()
 
-defineProps<{
+defineProps({
   blok: {
-    type: Object
-    required: false
-    default: () => undefined
-  }
-}>()
+    type: Object as PropType<GlobalStoryblok>,
+    required: true,
+  },
+})
 
 onMounted(() => {
   if (router) {
@@ -45,7 +48,7 @@ onUpdated(() => {
   }
 })
 
-const getNavigation = function (nav) {
+const getNavigation = function (nav: GlobalStoryblok) {
   let result
 
   result = '<ul>'
@@ -71,20 +74,23 @@ const getNavigation = function (nav) {
   return result
 }
 
-let links = []
+let links = [] as Array<HTMLElement>
 const linksRef = ref(null)
 
 /**
  * Prevents default browser behavior (page reload) for relative links.
  * https://github.com/d-darwin/darwin-vue-ui/blob/main/src/mixins/linkClickRouting.js
  */
-const navigate = function (event) {
-  const href = event.target.getAttribute('href')
-  const target = event.target.getAttribute('target')
-  // TODO: add if it is the same domain check
-  if (href && href[0] === '/' && target !== '_blank') {
-    event.preventDefault()
-    router && router.push(href)
+const navigate = function (event: MouseEvent): void {
+  const targetElement = event.target as HTMLElement | null
+  if (targetElement) {
+    const href = targetElement.getAttribute('href')
+    const target = targetElement.getAttribute('target')
+    // TODO: add if it is the same domain check
+    if (href && href[0] === '/' && target !== '_blank') {
+      event.preventDefault()
+      router && router.push(href)
+    }
   }
 }
 
