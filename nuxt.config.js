@@ -1,5 +1,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  runtimeConfig: {
+    public: {
+      STORYBLOK_VERSION: process.env.TOBIASMARTY_STORYBLOK_VERSION,
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {
