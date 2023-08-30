@@ -26,6 +26,9 @@ export default defineNuxtConfig({
   components: [{ path: '~/components/site' }],
 
   gsap: {},
+  build: {
+    transpile: ['vue-waypoint'],
+  },
   modules: [
     '@pinia/nuxt', // Vue Store
     '@nuxtjs/eslint-module',
