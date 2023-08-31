@@ -2,13 +2,13 @@
   <nav :class="{ hidden: !$navigationStore.navOpen }">
     <template v-if="blok">
       <template v-for="blokChild in blok.globals">
-        <!-- eslint-disable vue/no-v-html -->
         <div
           v-if="blokChild.component === 'global_reference'"
           :key="blokChild._uid"
-          v-html="getNavigation(blokChild.reference.content.Header_Navigation)"
+          v-dompurify-html="
+            getNavigation(blokChild.reference.content.Header_Navigation)
+          "
         ></div>
-        <!--eslint-enable-->
       </template>
     </template>
   </nav>

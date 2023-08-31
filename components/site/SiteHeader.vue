@@ -15,6 +15,11 @@
             </h1>
           </template>
         </template>
+        <template v-else-if="name">
+          <h1 class="grid-2col__left">
+            <nuxt-link to="/">{{ name }}</nuxt-link>
+          </h1>
+        </template>
 
         <aside v-if="showNav" class="grid-2col__right">
           <SiteBurger />
@@ -36,7 +41,13 @@ const { $navigationStore } = useNuxtApp() // get the store data
 defineProps({
   blok: {
     type: Object as PropType<GlobalStoryblok>,
-    required: true,
+    required: false,
+    default: null,
+  },
+  name: {
+    type: String as PropType<string>,
+    required: false,
+    default: 'test',
   },
   showNav: {
     type: Boolean as PropType<boolean>,
