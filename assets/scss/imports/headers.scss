@@ -1,3 +1,15 @@
+:deep(h1),
+:deep(h2),
+:deep(h3),
+:deep(h4),
+:deep(h5),
+:deep(h6),
+:deep(h1) *,
+:deep(h2) *,
+:deep(h3) *,
+:deep(h4) *,
+:deep(h5) *,
+:deep(h6) *,
 h1,
 h2,
 h3,
@@ -16,18 +28,22 @@ h6 * {
   @include fontFamily('Righteous');
 }
 
+:deep(h1),
 h1 {
   @include fontSize(2rem, 0.4vw);
 }
 
+:deep(h2),
 h2 {
   @include fontSize(1.6rem, 0.4vw);
 }
 
+:deep(h3),
 h3 {
   @include fontSize(1.4rem, 0.4vw);
 }
 
+:deep(h4),
 h4 {
   @include fontSize(1.2rem, 0.4vw);
 }

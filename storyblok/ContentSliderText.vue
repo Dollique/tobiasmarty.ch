@@ -52,7 +52,7 @@ const boxRotation = function () {
   display: grid;
   align-items: center;
 
-  padding: $gutter;
+  padding: var(--gutter);
   padding-top: 0;
   padding-bottom: 2rem;
 }

@@ -145,7 +145,7 @@ nav > div {
 
   :deep(ul) {
     list-style: none;
-    margin: 0 $gutter;
+    margin: 0 var(--gutter);
     padding: 0;
 
     li {

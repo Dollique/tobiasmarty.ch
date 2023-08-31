@@ -5,6 +5,8 @@ body,
   width: 100%;
   min-height: 100vh;
 
+  overflow-x: hidden;
+
   margin: 0;
   padding: 0;
 
@@ -13,7 +15,7 @@ body,
 
 * {
   color: $color-content;
-  @include fontSize(0.9rem, 0.4vw, 2.2rem);
+  @include fontSize(0.9rem, 0.4vw, 1.4rem);
   @include fontFamily('Sarabun');
   font-weight: 400;
 

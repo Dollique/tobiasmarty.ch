@@ -1,37 +1,17 @@
-@mixin for-phone-only {
-  @media (max-width: 599px) {
-    @content;
-  }
-}
+@mixin addTemplateWrapper {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
 
-@mixin for-tablet-portrait-up {
-  @media (min-width: 600px) {
-    @content;
-  }
-}
-
-@mixin for-tablet-landscape-up {
-  @media (min-width: 900px) {
-    @content;
-  }
-}
-
-@mixin for-desktop-up {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
-
-@mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
-    @content;
-  }
+  position: relative; // allow children to have bigger width
+  max-width: var(--page-max-width);
+  align-items: flex-start;
 }
 
 @mixin addGutter {
-  margin-left: $gutter;
-  margin-right: $gutter;
-  width: calc(100% - $gutter * 2);
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
+  width: calc(100% - var(--gutter) * 2);
 }
 
 @mixin addHR($position: '') {

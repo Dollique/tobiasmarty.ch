@@ -39,7 +39,7 @@ defineProps({
   width: 100%;
   overflow: hidden;
 
-  margin-bottom: $gap;
+  margin-bottom: var(--gap);
 
   &.color-white,
   &.color-white * {
@@ -48,14 +48,14 @@ defineProps({
 
   &.align {
     &-center {
-      padding-left: $gutter;
-      padding-right: $gutter;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
     }
     &-left {
-      padding-right: $gutter;
+      padding-right: var(--gutter);
     }
     &-right {
-      padding-left: $gutter;
+      padding-left: var(--gutter);
     }
   }
 

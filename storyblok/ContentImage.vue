@@ -59,7 +59,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 picture {
   display: block;
-  margin-bottom: $gap;
+  margin-bottom: var(--gap);
 
   @include for-tablet-landscape-up {
     max-width: 50vw;
@@ -73,17 +73,17 @@ picture {
 
   &.align {
     &-center {
-      padding-left: $gutter;
-      padding-right: $gutter;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
 
       margin-right: auto;
       margin-left: auto;
     }
     &-left {
-      padding-right: $gutter;
+      padding-right: var(--gutter);
     }
     &-right {
-      padding-left: $gutter;
+      padding-left: var(--gutter);
     }
 
     &-full {

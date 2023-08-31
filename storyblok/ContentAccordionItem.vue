@@ -68,9 +68,6 @@ defineExpose({
 <style lang="scss" scoped>
 @import 'assets/scss/imports/headers.scss';
 
-.accordion-item {
-}
-
 h2 {
   @include addGutter;
 

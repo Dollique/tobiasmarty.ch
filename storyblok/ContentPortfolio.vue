@@ -52,8 +52,6 @@ const isLink = function (element: HTMLElement | null): Boolean {
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/imports/headers.scss';
-
 .portfolio-wrapper {
   position: relative;
   width: 100%;

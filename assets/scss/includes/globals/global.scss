@@ -25,7 +25,7 @@
 
 // content separator
 .add_margin_bottom {
-  margin-bottom: $gap;
+  margin-bottom: var(--gap);
 }
 
 .add_gutter {

@@ -113,7 +113,7 @@ a {
   background-color: $color-background;
 
   .wrapper-inner {
-    margin: 0 $gutter;
+    margin: 0 var(--gutter);
   }
 }
 </style>

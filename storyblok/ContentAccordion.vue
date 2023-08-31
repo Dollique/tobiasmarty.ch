@@ -35,9 +35,7 @@ const onCloseAll = function () {
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/imports/headers.scss';
-
 .accordion {
-  margin-bottom: $gap;
+  margin-bottom: var(--gap);
 }
 </style>

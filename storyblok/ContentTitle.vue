@@ -53,6 +53,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/scss/imports/headers.scss';
+
 h1,
 h2,
 h3,
@@ -64,6 +66,6 @@ h6 {
 
 h1,
 h2 {
-  padding-bottom: $gap;
+  padding-bottom: var(--title-gap);
 }
 </style>

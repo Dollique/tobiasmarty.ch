@@ -23,7 +23,7 @@ defineProps({
 <style lang="scss" scoped>
 .skills {
   flex-direction: column;
-  padding: $gutter;
+  padding: var(--gutter);
 }
 
 h3 {

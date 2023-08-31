@@ -22,6 +22,8 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
 @import 'assets/scss/imports/headers.scss';
 
 .richtext {
+  margin-bottom: var(--gap);
+
   :deep(h1),
   :deep(h2),
   :deep(h3),
@@ -31,9 +33,16 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
     @include addGutter;
   }
 
-  :deep(p),
   :deep(h1) {
-    padding-bottom: $gap;
+    padding-bottom: var(--title-gap);
+  }
+
+  :deep(p) {
+    padding-bottom: 20px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 
   :deep(h2),
@@ -41,7 +50,7 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
   :deep(h4),
   :deep(h5),
   :deep(h6) {
-    padding-bottom: calc($gap / 2);
+    padding-bottom: calc(var(--title-gap) / 2);
   }
 }
 </style>

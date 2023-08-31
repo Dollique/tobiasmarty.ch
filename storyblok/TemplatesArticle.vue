@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <SiteHeader :blok="blok" :show-nav="blok.showNav" />
 
-    <PageLoader />
+    <PageLoader class="loader" />
     <main v-if="isClientRendered" v-editable="blok">
       <Waypoint
         v-for="childblok in blok.body"
@@ -60,34 +60,33 @@ const options: IntersectionObserverInit = {
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/imports/headers.scss';
 @import 'assets/scss/imports/grid.scss';
 
 .main-wrapper {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  max-width: $page-max-width;
-  margin: 0 auto;
+  @include addTemplateWrapper;
 
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
+  // grid-template-rows: auto 1fr auto;
+  // margin: 0 auto;
+  // position: relative;
+}
+
+main {
+  width: 100%;
+}
+
+.loader {
+  margin: auto;
 }
 
 :deep(main) {
   p {
     @include addGutter;
   }
+}
 
-  /*> *:not(.quote-wrapper) {
-    img {
-      width: 100%;
-    }
-  }*/
-
-  > .quote-wrapper {
-    width: 100%;
-    //margin-top: 7vw;
-    //margin-bottom: 9vw;
-  }
+:deep(footer) {
+  margin-top: auto;
 }
 </style>

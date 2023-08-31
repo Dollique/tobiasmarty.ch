@@ -113,6 +113,11 @@ if (props.blok.type === 'skillbox') {
   margin-bottom: 50px;
   padding-bottom: 1px; // fix firefox issue with border-bottom
 
+  overflow: visible;
+  .swiper-wrapper {
+    overflow: visible;
+  }
+
   &-image {
     padding: 12px;
   }
@@ -171,8 +176,7 @@ if (props.blok.type === 'skillbox') {
 
       @include for-tablet-portrait-up {
         //max-height: 850px;
-        margin-left: 25vw;
-        margin-right: 25vw;
+        max-width: 60%;
       }
 
       img {
