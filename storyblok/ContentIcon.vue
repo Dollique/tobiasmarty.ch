@@ -1,6 +1,9 @@
 <template>
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-editable="blok" class="icon" v-html="blok.icon_svg_code"></div>
+  <div
+    v-editable="blok"
+    v-dompurify-html="blok.icon_svg_code"
+    class="icon"
+  ></div>
 </template>
 
 <script setup lang="ts">

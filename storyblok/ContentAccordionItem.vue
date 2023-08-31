@@ -2,8 +2,7 @@
   <section ref="accordionItem" v-editable="blok" class="accordion-item">
     <h2 @click="slidetoggle">{{ blok.title }}</h2>
     <div class="accordion-item__content">
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <div v-html="renderedRichText"></div>
+      <div v-dompurify-html="renderedRichText"></div>
     </div>
   </section>
 </template>

@@ -16,7 +16,7 @@ module.exports = {
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['default', '[...slug]'], // ignores ~/layouts/default.vue
+        ignores: ['default', '[...slug]', 'error'], // ignores ~/layouts/default.vue and error.vue
       },
     ],
   },

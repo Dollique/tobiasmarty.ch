@@ -1,7 +1,6 @@
 <template>
   <div v-editable="blok" class="richtext">
-    <!-- eslint-disable-next-line vue/no-v-html -->
-    <div v-html="renderedRichText"></div>
+    <div v-dompurify-html="renderedRichText"></div>
   </div>
 </template>
 
