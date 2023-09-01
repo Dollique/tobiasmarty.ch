@@ -1,0 +1,41 @@
+/* CSS UTILITY CLASSES
+  * These utility classes are for usage in the headless CMS system to configure the CSS of a component
+*/
+
+// gaps
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+.gap-5 {
+  gap: 5rem;
+}
+
+// content separator
+.add_margin_bottom {
+  margin-bottom: var(--gap);
+}
+
+.add_gutter {
+  @include addGutter;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}

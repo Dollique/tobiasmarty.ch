@@ -15,6 +15,7 @@ export default defineNuxtConfig({
             @import "@/assets/scss/includes/variables/structure.scss";
             @import "@/assets/scss/includes/mixins/mixins.scss";
             @import "@/assets/scss/includes/globals/fonts.scss";
+            @import "@/assets/scss/includes/globals/utilities.scss";
             @import "@/assets/scss/includes/globals/global.scss";
             @import "~/assets/scss/includes/globals/resets.scss";
             @import "@/assets/scss/includes/globals/transition.scss";
