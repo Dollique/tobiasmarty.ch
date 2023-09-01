@@ -1,33 +1,30 @@
-/* CSS UTILITS CLASSES
-  * These utility classes are for usage in the headless CMS system to configure the CSS of a component
-*/
+.link {
+  @include for-hover {
+    text-decoration: none;
+    position: relative;
 
-// gaps
-.gap-1 {
-  gap: 1rem;
-}
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $color-black;
+      pointer-events: none;
+      transition:
+        height 0.4s,
+        background-color 0.4s,
+        transform 0.4s;
+    }
 
-.gap-2 {
-  gap: 2rem;
-}
-
-.gap-3 {
-  gap: 3rem;
-}
-
-.gap-4 {
-  gap: 4rem;
-}
-
-.gap-5 {
-  gap: 5rem;
-}
-
-// content separator
-.add_margin_bottom {
-  margin-bottom: var(--gap);
-}
-
-.add_gutter {
-  @include addGutter;
+    &:hover {
+      &:after {
+        transform: rotate(180deg);
+        height: 33%;
+        background-color: rgba($color-black, 0.5);
+      }
+    }
+  }
 }

@@ -127,16 +127,11 @@ footer {
   }
 }
 
-.footer__wrapper a {
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .left {
   margin-right: auto;
+  a {
+    @extend .link;
+  }
 }
 
 .right {

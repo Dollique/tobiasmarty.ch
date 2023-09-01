@@ -30,6 +30,10 @@ body,
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 strong,
 b {
   font-weight: bold;
@@ -42,14 +46,6 @@ body {
   &.navOpen {
     overflow-y: hidden;
   }
-}
-
-.hidden {
-  display: none;
-}
-
-.flex {
-  display: flex;
 }
 
 ul {

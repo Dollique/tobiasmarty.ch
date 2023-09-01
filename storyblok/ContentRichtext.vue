@@ -37,10 +37,14 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
   }
 
   :deep(p) {
-    padding-bottom: 20px;
+    padding-bottom: var(--p-margin);
 
     &:last-child {
       padding-bottom: 0;
+    }
+
+    a {
+      @extend .link;
     }
   }
 

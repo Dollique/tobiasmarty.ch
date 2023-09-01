@@ -50,7 +50,7 @@ defineProps({
   display: flex;
   justify-content: center;
 
-  .icon {
+  &.icon {
     width: fit-content;
     font-size: 0;
     svg {

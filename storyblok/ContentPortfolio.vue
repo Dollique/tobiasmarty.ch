@@ -74,7 +74,7 @@ const isLink = function (element: HTMLElement | null): Boolean {
     }
   }
 
-  @media (hover: hover) and (pointer: fine) {
+  @include for-hover {
     &:hover {
       @include porftolio-hover;
     }

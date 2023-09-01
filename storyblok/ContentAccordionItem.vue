@@ -122,10 +122,18 @@ h2 {
 }
 
 .accordion-item__content {
-  overflow: hidden;
+  // overflow: hidden; // not sure why this was needed -> removed because it causes an issue with .link in the richtext
 
   :deep(p) {
-    padding-bottom: 3px;
+    padding-bottom: var(--p-margin);
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    a {
+      @extend .link;
+    }
   }
 
   :deep(ul) {
