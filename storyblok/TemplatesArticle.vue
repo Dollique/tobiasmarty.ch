@@ -85,8 +85,4 @@ main {
     @include addGutter;
   }
 }
-
-:deep(footer) {
-  margin-top: auto;
-}
 </style>

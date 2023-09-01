@@ -103,27 +103,22 @@
 footer {
   @include addGutter;
 
-  margin-top: 20px;
   text-transform: uppercase;
 }
 
 .footer__wrapper {
   display: flex;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
+  padding-top: 15px;
 
   flex-direction: column;
 
   @include for-tablet-portrait-up {
+    margin-bottom: 35px;
+    padding-top: 30px;
+
     flex-direction: row;
     align-items: flex-end;
-  }
-}
-
-.footer__wrapper {
-  padding-top: 10px;
-
-  @include for-tablet-portrait-up {
-    padding-top: 30px;
   }
 }
 
