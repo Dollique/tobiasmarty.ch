@@ -27,3 +27,9 @@
     @content;
   }
 }
+
+@mixin for-hover {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
