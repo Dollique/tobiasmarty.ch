@@ -13,6 +13,13 @@ body,
   background-color: $color-background;
 }
 
+/* fix for my glich-transition to work */
+#__nuxt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 * {
   color: $color-content;
   @include fontSize(0.9rem, 0.4vw, 1.4rem);

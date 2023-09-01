@@ -13,6 +13,7 @@ module.exports = {
   extends: ['@nuxtjs/eslint-config-typescript', 'plugin:prettier/recommended'],
   plugins: [],
   rules: {
+    'vue/no-multiple-template-root': 0,
     'vue/multi-word-component-names': [
       'error',
       {

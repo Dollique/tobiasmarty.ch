@@ -125,6 +125,7 @@ h2 {
   // overflow: hidden; // not sure why this was needed -> removed because it causes an issue with .link in the richtext
 
   :deep(p) {
+    @include addGutter;
     padding-bottom: var(--p-margin);
 
     &:last-child {

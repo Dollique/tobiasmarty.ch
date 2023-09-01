@@ -37,6 +37,7 @@ const renderedRichText = computed(() => renderRichText(props.blok.body))
   }
 
   :deep(p) {
+    @include addGutter;
     padding-bottom: var(--p-margin);
 
     &:last-child {

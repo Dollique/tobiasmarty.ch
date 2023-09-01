@@ -25,7 +25,10 @@ export default defineNuxtConfig({
     },
   },
 
-  components: [{ path: '~/components/site' }],
+  components: [
+    { path: '~/components/site' },
+    { path: '~/components/transition' },
+  ],
 
   gsap: {},
   build: {

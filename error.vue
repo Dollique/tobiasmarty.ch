@@ -1,3 +1,21 @@
+<template>
+  <MainWrapper name="error" header-name="₮ØƀıȺƨḿȺятɎ.₵ɦ">
+    <h1>Error {{ error.statusCode }}</h1>
+    <h2>Error Message</h2>
+    <div v-if="typeof errorMessage === 'object'">
+      <p v-for="(err, index) in errorMessage" :key="err">
+        {{ index }}: {{ err }}
+      </p>
+    </div>
+    <div v-else>
+      {{ errorMessage }}
+    </div>
+    <button @click="handleError">Back Home</button>
+    <h2 class="stackToggle" @click="showStack">Toggle Stack</h2>
+    <div v-dompurify-html="error.stack" class="stack"></div>
+  </MainWrapper>
+</template>
+
 <script setup lang="ts">
 interface Error {
   statusCode: number
@@ -18,52 +36,13 @@ const showStack = () => {
   stack.classList.toggle('show')
 }
 
-const errorMessage = JSON.parse(props.error.message)
+let errorMessage = props.error.message
+if (isJsonString(errorMessage)) {
+  errorMessage = JSON.parse(errorMessage)
+}
 </script>
 
-<template>
-  <NuxtLayout name="error">
-    <div class="main-wrapper">
-      <SiteHeader name="₮ØƀıȺƨḿȺятɎ.₵ɦ" />
-
-      <section class="page flex">
-        <h1>Error {{ error.statusCode }}</h1>
-        <h2>Error Message</h2>
-        <div>
-          <p v-for="(err, index) in errorMessage" :key="err">
-            {{ index }}: {{ err }}
-          </p>
-        </div>
-        <button @click="handleError">Back Home</button>
-        <h2 class="stackToggle" @click="showStack">Toggle Stack</h2>
-        <div v-dompurify-html="error.stack" class="stack"></div>
-      </section>
-
-      <SiteFooter />
-    </div>
-  </NuxtLayout>
-</template>
-
 <style scoped lang="scss">
-.main-wrapper {
-  @include addTemplateWrapper;
-
-  display: grid;
-  grid-template-rows: minmax(min-content, max-content) auto minmax(
-      min-content,
-      max-content
-    );
-}
-
-.page {
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 30px;
-
-  max-width: 100%;
-}
-
 h1,
 h2,
 p,
@@ -105,7 +84,7 @@ button {
 .stack {
   display: none;
 
-  max-width: 100vw;
+  max-width: calc(100vw - var(--gutter) * 2);
   overflow: scroll;
   @include addGutter;
 
