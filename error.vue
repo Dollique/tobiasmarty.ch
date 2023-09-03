@@ -10,7 +10,7 @@
     <div v-else>
       {{ errorMessage }}
     </div>
-    <button @click="handleError">Back Home</button>
+    <GlobalButton @click="handleError">Back Home</GlobalButton>
     <h2 class="stackToggle" @click="showStack">Toggle Stack</h2>
     <div v-dompurify-html="error.stack" class="stack"></div>
   </MainWrapper>
@@ -58,20 +58,6 @@ h1 {
 h2 {
   font-size: 2rem;
   font-weight: 700;
-}
-
-button {
-  width: fit-content;
-  padding: 10px 20px;
-  background: transparent;
-  border: 1px solid $color-black;
-  cursor: pointer;
-  border-radius: 10px;
-
-  &:hover {
-    background-color: $color-swiper-border;
-    color: $color-background;
-  }
 }
 
 .stackToggle {

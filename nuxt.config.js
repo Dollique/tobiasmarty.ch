@@ -27,6 +27,7 @@ export default defineNuxtConfig({
 
   components: [
     { path: '~/components/site' },
+    { path: '~/components/global' },
     { path: '~/components/transition' },
   ],
 
