@@ -1,5 +1,10 @@
 <template>
-  <MainWrapper :blok="blok" :name="name">
+  <MainWrapper
+    :template="name"
+    :header-name="headerName"
+    :show-nav="blok.showNav"
+    :header-nav="headerNav"
+  >
     <template v-if="name === 'page'">
       <StoryblokComponent
         v-for="blokChild in blok.body"
@@ -27,7 +32,7 @@ import type {
   TemplatesArticleStoryblok,
 } from '@/types/component-types-sb'
 
-defineProps({
+const props = defineProps({
   blok: {
     type: Object as PropType<
       TemplatesPageStoryblok | TemplatesArticleStoryblok
@@ -39,6 +44,19 @@ defineProps({
     required: true,
   },
 })
+
+// get storyblok globals
+
+let headerName = ''
+let headerNav = [] as Array<Object>
+if (props.blok.globals) {
+  for (const sbGlobals of props.blok.globals) {
+    if (sbGlobals.component === 'global_reference') {
+      headerName = sbGlobals.reference.content.site_title
+      headerNav = sbGlobals.reference.content.Header_Navigation
+    }
+  }
+}
 
 // Waypoint options
 

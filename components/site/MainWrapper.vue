@@ -1,16 +1,16 @@
 <template>
   <div class="site-wrapper" :class="cssClasses">
-    <SiteHeader
-      :blok="blok"
-      :show-nav="blok ? blok.showNav : null"
-      :name="headerName"
-    />
+    <SiteHeader :show-nav="showNav" :nav="headerNav" :name="headerName" />
 
-    <PageLoader v-if="name !== 'error'" class="loader" />
-    <main v-if="isClientRendered && name === 'article'">
+    <PageLoader v-if="template !== 'error'" class="loader" />
+    <main v-if="isClientRendered && template === 'article'">
       <slot />
     </main>
-    <main v-else-if="isClientRendered && (name === 'page' || name === 'error')">
+    <main
+      v-else-if="
+        isClientRendered && (template === 'page' || template === 'error')
+      "
+    >
       <slot />
     </main>
 
@@ -19,20 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  TemplatesPageStoryblok,
-  TemplatesArticleStoryblok,
-} from '@/types/component-types-sb'
-
 const props = defineProps({
-  blok: {
-    type: Object as PropType<
-      TemplatesPageStoryblok | TemplatesArticleStoryblok
-    >,
-    required: false,
-    default: null,
-  },
-  name: {
+  template: {
     type: String,
     required: true,
   },
@@ -40,6 +28,16 @@ const props = defineProps({
     type: String,
     required: false,
     default: '',
+  },
+  showNav: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  headerNav: {
+    type: Array as PropType<Object[]>,
+    required: false,
+    default: () => [],
   },
 })
 
@@ -58,13 +56,17 @@ const getRoute = getRouteClass.params.slug
 let routeClass = 'route__'
 
 if (typeof getRoute !== 'undefined' && getRoute !== '') {
-  routeClass += getRouteClass.params.slug
+  if (getRoute.constructor === Array) {
+    routeClass += getRoute.join('_')
+  } else {
+    routeClass += getRoute
+  }
 } else {
   routeClass += 'home'
 }
 
 // css classes
-const cssClasses = routeClass + ' ' + props.name
+const cssClasses = routeClass + ' ' + props.template
 </script>
 
 <style lang="scss" scoped>

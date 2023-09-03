@@ -2,24 +2,9 @@
   <header class="col-8" :class="$navigationStore.navOpen">
     <div class="wrapper-outer">
       <div class="grid grid-2col wrapper-inner">
-        <template v-if="blok">
-          <template v-for="myblok in blok.globals">
-            <h1
-              v-if="myblok.component === 'global_reference'"
-              :key="myblok._uid"
-              class="grid-2col__left"
-            >
-              <nuxt-link to="/">{{
-                myblok.reference.content.site_title
-              }}</nuxt-link>
-            </h1>
-          </template>
-        </template>
-        <template v-else-if="name">
-          <h1 class="grid-2col__left">
-            <nuxt-link to="/">{{ name }}</nuxt-link>
-          </h1>
-        </template>
+        <h1 class="grid-2col__left">
+          <nuxt-link to="/">{{ name }}</nuxt-link>
+        </h1>
 
         <aside v-if="showNav" class="grid-2col__right">
           <SiteBurger />
@@ -29,21 +14,14 @@
       </div>
     </div>
 
-    <SiteNavigation v-if="showNav" :blok="blok" />
+    <SiteNavigation v-if="showNav" :nav="nav" />
   </header>
 </template>
 
 <script setup lang="ts">
-import type { GlobalStoryblok } from '@/types/component-types-sb'
-
 const { $navigationStore } = useNuxtApp() // get the store data
 
 defineProps({
-  blok: {
-    type: Object as PropType<GlobalStoryblok>,
-    required: false,
-    default: null,
-  },
   name: {
     type: String as PropType<string>,
     required: false,
@@ -53,6 +31,11 @@ defineProps({
     type: Boolean as PropType<boolean>,
     required: false,
     default: false,
+  },
+  nav: {
+    type: Array as PropType<Object[]>,
+    required: false,
+    default: () => [],
   },
 })
 </script>

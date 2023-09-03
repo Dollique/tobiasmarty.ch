@@ -1,5 +1,5 @@
 <template>
-  <MainWrapper name="error" header-name="₮ØƀıȺƨḿȺятɎ.₵ɦ">
+  <MainWrapper template="error" header-name="₮ØƀıȺƨḿȺятɎ.₵ɦ">
     <h1>Error {{ error.statusCode }}</h1>
     <h2>Error Message</h2>
     <div v-if="typeof errorMessage === 'object'">

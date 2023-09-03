@@ -1,28 +1,16 @@
 <template>
   <nav :class="{ hidden: !$navigationStore.navOpen }">
-    <template v-if="blok">
-      <template v-for="blokChild in blok.globals">
-        <div
-          v-if="blokChild.component === 'global_reference'"
-          :key="blokChild._uid"
-          v-dompurify-html="
-            getNavigation(blokChild.reference.content.Header_Navigation)
-          "
-        ></div>
-      </template>
-    </template>
+    <div v-dompurify-html="getNavigation(nav)"></div>
   </nav>
 </template>
 
 <script setup lang="ts">
-import type { GlobalStoryblok } from '@/types/component-types-sb'
-
 const { $navigationStore } = useNuxtApp() // get the store data
 const router = useRouter()
 
 defineProps({
-  blok: {
-    type: Object as PropType<GlobalStoryblok>,
+  nav: {
+    type: Array as PropType<Object[]>,
     required: true,
   },
 })
@@ -48,7 +36,7 @@ onUpdated(() => {
   }
 })
 
-const getNavigation = function (nav: GlobalStoryblok) {
+const getNavigation = function (nav) {
   let result
 
   result = '<ul>'
