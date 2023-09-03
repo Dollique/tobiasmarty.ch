@@ -3,21 +3,23 @@
   <TransitionGlitch />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { watch } from 'vue'
+import { useNavigationStore } from '~/store/navigation'
+const navigationStore = useNavigationStore() // get the store data
 
-const { $navigationStore } = useNuxtApp() // get the store data
 const route = useRoute()
 
 const navOpen = function () {
-  return $navigationStore.navOpen
+  return navigationStore.navOpen
 }
 
 watch(route, () => {
-  $navigationStore.toggle()
+  navigationStore.toggle()
 })
 
 watch(navOpen, (value) => {
-  document.querySelector('body').classList.toggle('navOpen', value)
+  const bodyElement = document.querySelector('body') as HTMLElement
+  bodyElement.classList.toggle('navOpen', value)
 })
 </script>

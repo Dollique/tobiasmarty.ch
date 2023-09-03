@@ -6,15 +6,22 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { slug } = useRoute().params
 const config = useRuntimeConfig()
 
+let route = ''
+if (slug.constructor === Array && slug.length > 0) {
+  route = slug.join('/')
+} else {
+  route = slug === '' ? 'home' : (slug as string)
+}
+
 // default view -> get everything from Storyblok
 const story = await useAsyncStoryblok(
-  slug && slug.length > 0 ? slug.join('/') : 'home',
+  route,
   {
-    version: config.public.STORYBLOK_VERSION,
+    version: config.public.STORYBLOK_VERSION as 'draft' | 'published',
     resolve_relations: 'global_reference.reference',
   }, // API Options
   { resolveRelations: ['global_reference.reference'] }, // Bridge Options

@@ -6,7 +6,7 @@ export const useFormStore = defineStore('form', {
   state: () => ({
     formData: {},
   }),
-  actions: {
+  /* actions: {
     update(value) {
       console.log('STORE UPDATE STATE', this.formData)
 
@@ -14,7 +14,7 @@ export const useFormStore = defineStore('form', {
       const val = value[0]
       this.formData[key] = val
     },
-  },
+  }, */
 })
 
 /* eslint-enable no-console */

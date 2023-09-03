@@ -9,6 +9,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "ts": "nuxi typecheck",
     "generate-sb-types": "storyblok-generate-ts source=./components.247154.json target=./types/component-types-sb",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
