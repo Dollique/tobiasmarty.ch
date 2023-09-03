@@ -1,16 +1,27 @@
 <template>
-  <nav :class="{ hidden: !$navigationStore.navOpen }">
-    <div v-dompurify-html="getNavigation(nav)"></div>
+  <nav :class="{ hidden: !navigationStore.navOpen }">
+    <div
+      v-dompurify-html="
+        getNavigation(
+          nav.navigationArray,
+          nav.nameSchema,
+          nav.linkSchema,
+          nav.subcategoriesSchema,
+        )
+      "
+    ></div>
   </nav>
 </template>
 
 <script setup lang="ts">
-const { $navigationStore } = useNuxtApp() // get the store data
+import { useNavigationStore } from '~/store/navigation'
+const navigationStore = useNavigationStore() // get the store data
+
 const router = useRouter()
 
 defineProps({
   nav: {
-    type: Array as PropType<Object[]>,
+    type: Object as PropType<HeaderNav>,
     required: true,
   },
 })
@@ -36,22 +47,34 @@ onUpdated(() => {
   }
 })
 
-const getNavigation = function (nav) {
+const getNavigation = function (
+  navigationArray: NavigationArray,
+  nameSchema: string,
+  linkSchema: string,
+  subcategoriesSchema: string,
+) {
   let result
 
   result = '<ul>'
-  for (const key in nav) {
-    if (Object.prototype.hasOwnProperty.call(nav, key)) {
+  for (const key in navigationArray) {
+    if (Object.prototype.hasOwnProperty.call(navigationArray, key)) {
       result +=
         '<li><a href="/' +
-        nav[key].Header_Link.cached_url +
+        getProperty(navigationArray[key], linkSchema) +
         '">' +
-        nav[key].display_name +
+        getProperty(navigationArray[key], nameSchema) +
         '</a>'
 
-      const myObject = nav[key]
-      if (myObject.Sub_Category.length !== 0) {
-        result += getNavigation(myObject.Sub_Category)
+      const myObject = navigationArray[key]
+      const subCategories = getProperty(myObject, subcategoriesSchema)
+
+      if (subCategories && subCategories.length !== 0) {
+        result += getNavigation(
+          subCategories,
+          nameSchema,
+          linkSchema,
+          subcategoriesSchema,
+        )
       }
 
       result += '</li>'

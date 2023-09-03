@@ -1,5 +1,5 @@
 <template>
-  <header class="col-8" :class="$navigationStore.navOpen">
+  <header class="col-8" :class="navigationStore.navOpen">
     <div class="wrapper-outer">
       <div class="grid grid-2col wrapper-inner">
         <h1 class="grid-2col__left">
@@ -19,7 +19,8 @@
 </template>
 
 <script setup lang="ts">
-const { $navigationStore } = useNuxtApp() // get the store data
+import { useNavigationStore } from '~/store/navigation'
+const navigationStore = useNavigationStore() // get the store data
 
 defineProps({
   name: {
@@ -33,9 +34,9 @@ defineProps({
     default: false,
   },
   nav: {
-    type: Array as PropType<Object[]>,
+    type: Object as PropType<HeaderNav>,
     required: false,
-    default: () => [],
+    default: () => {},
   },
 })
 </script>

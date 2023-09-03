@@ -1,7 +1,7 @@
 <template>
   <div
     class="menu btn1"
-    :class="{ open: $navigationStore.navOpen }"
+    :class="{ open: navigationStore.navOpen }"
     @click="toggle()"
   >
     <div class="icon-left"></div>
@@ -10,10 +10,11 @@
 </template>
 
 <script setup lang="ts">
-const { $navigationStore } = useNuxtApp() // get the store data
+import { useNavigationStore } from '~/store/navigation'
+const navigationStore = useNavigationStore() // get the store data
 
 const toggle = () => {
-  $navigationStore.toggle()
+  navigationStore.toggle()
 }
 </script>
 

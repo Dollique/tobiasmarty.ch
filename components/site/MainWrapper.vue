@@ -35,9 +35,9 @@ const props = defineProps({
     default: false,
   },
   headerNav: {
-    type: Array as PropType<Object[]>,
+    type: Object as PropType<HeaderNav>,
     required: false,
-    default: () => [],
+    default: () => {},
   },
 })
 

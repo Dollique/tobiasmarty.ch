@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { Waypoint } from 'vue-waypoint'
+import { HeaderNav } from '@/types/global'
 
 import type {
   TemplatesPageStoryblok,
@@ -48,12 +49,17 @@ const props = defineProps({
 // get storyblok globals
 
 let headerName = ''
-let headerNav = [] as Array<Object>
+let headerNav = {} as HeaderNav
 if (props.blok.globals) {
   for (const sbGlobals of props.blok.globals) {
     if (sbGlobals.component === 'global_reference') {
       headerName = sbGlobals.reference.content.site_title
-      headerNav = sbGlobals.reference.content.Header_Navigation
+      headerNav = {
+        navigationArray: sbGlobals.reference.content.Header_Navigation,
+        nameSchema: 'display_name',
+        linkSchema: 'Header_Link.cached_url',
+        subcategoriesSchema: 'Sub_Category',
+      }
     }
   }
 }
