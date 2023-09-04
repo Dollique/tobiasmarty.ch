@@ -2,9 +2,9 @@
   <canvas class="glitch"></canvas>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // get random size for the glitch effect
-const getRandomInt = function (min, max) {
+const getRandomInt = function (min: number, max: number) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -15,7 +15,7 @@ onMounted(() => {
    * https://codepen.io/knyttneve/pen/eXNbKo
    * **/
 
-  const canvas = document.querySelector('.glitch')
+  const canvas = document.querySelector('.glitch') as HTMLCanvasElement
   const ctx = canvas.getContext('2d')
   const colors = [
     '#b4b2b5',
@@ -32,6 +32,8 @@ onMounted(() => {
   canvas.height = document.body.clientHeight
 
   function glitch() {
+    if (!ctx) return
+
     ctx.fillStyle = '#1a191c'
     // ctx.fillRect(0, 0, document.body.clientWidth, document.body.clientHeight)
 

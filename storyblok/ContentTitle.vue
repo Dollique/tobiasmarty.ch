@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 export default {
   props: {
     blok: {
@@ -37,11 +37,14 @@ export default {
   },
   computed: {
     hlevel: {
-      get() {
+      get(): number {
         if (this.blok.level) {
           return this.blok.level
         }
         return 1
+      },
+      set() {
+        // Dummy setter function that does nothing
       },
     },
   },

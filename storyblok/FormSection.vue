@@ -15,8 +15,9 @@
   </form>
 </template>
 
-<script>
-const { $formStore } = useNuxtApp() // get the store data
+<script lang="ts">
+// import { useFormStore } from '~/store/forms'
+// const formStore = useFormStore() // get the store data
 
 // TODO: remove eslint disable when done
 /* eslint-disable no-console */
@@ -39,11 +40,11 @@ export default {
   },
   methods: {
     handleFormSubmit() {
-      const formApiEndpoint = 'http://geyst.appengine.flow.ch:8080'
+      /* const formApiEndpoint = 'http://geyst.appengine.flow.ch:8080'
 
       console.log('test', this.inputs)
       console.log('test 2', this.inputs2)
-      console.log('test STORE', $formStore.formData)
+      console.log('test STORE', formStore.formData)
 
       const formRequest = new Request(formApiEndpoint, {
         method: 'POST',
@@ -76,7 +77,7 @@ export default {
           buttonEl.style.display = 'block'
           sendingEl.style.display = 'none'
           console.error(error)
-        })
+        }) */
     },
   },
 }

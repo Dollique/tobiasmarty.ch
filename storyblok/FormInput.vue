@@ -10,8 +10,9 @@
   </div>
 </template>
 
-<script>
-const { $formStore } = useNuxtApp() // get the store data
+<script lang="ts">
+// import { useFormStore } from '~/store/forms'
+// const formStore = useFormStore() // get the store data
 
 export default {
   props: {
@@ -36,11 +37,11 @@ export default {
         return this.value
         // return [this.value,this.blok.name];
       },
-      set(val) {
+      set(val: string) {
         this.$emit('input', val)
         this.$emit('update:inputs2', this.blok.name)
 
-        $formStore.update([this.inputVal, this.blok.name])
+        // formStore.update([this.inputVal, this.blok.name])
       },
     },
   },
