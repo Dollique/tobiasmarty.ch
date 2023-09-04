@@ -40,6 +40,10 @@ const props = defineProps({
     >,
     required: true,
   },
+  meta: {
+    type: Object as PropType<SBMetaData>,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -63,6 +67,15 @@ if (props.blok.globals) {
     }
   }
 }
+
+let siteTitle = headerName
+if (props.meta.title !== '') {
+  siteTitle = props.meta.title + ' | ' + headerName
+}
+
+useHead({
+  title: siteTitle,
+})
 
 // Waypoint options
 

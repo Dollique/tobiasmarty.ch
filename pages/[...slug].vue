@@ -3,6 +3,7 @@
     v-if="story"
     :key="story.content._uid"
     :blok="story.content"
+    :meta="meta"
   />
 </template>
 
@@ -32,5 +33,10 @@ if (story.value.status) {
     statusCode: story.value.status,
     statusMessage: story.value.response,
   })
+}
+
+const meta: SBMetaData = {
+  title: story.value.name,
+  slug: story.value.slug,
 }
 </script>
