@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { Waypoint } from 'vue-waypoint'
 import { HeaderNav } from '@/types/global'
 
 import type {
